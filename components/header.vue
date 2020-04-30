@@ -1,10 +1,10 @@
 <template>
   <nav class="nav-area">
     <ul>
-      <li><a href="#">Home</a></li>
+      <li><nuxt-link to="/">Home</nuxt-link></li>
       <li class="drop-down"><a href="#">Projects</a>
         <ul>
-          <li><a href="#">NoRobot</a></li>
+          <li><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
           <li><a href="#">Rest Sample</a></li>
           <li><a href="#">Holiday</a></li>
         </ul>
