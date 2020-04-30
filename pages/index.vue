@@ -24,20 +24,13 @@
           </p>
         </div>
       </section>
-      <section id="about">
-        
-        <p>
-          This is a landing page with a full screen video background.
-        </p>
+      <section id="about">dd        
       </section>
 
-      <v-parallax height="550"
+      <v-parallax height="450"
         src="https://panteli.biz/static/coffee.jpg">
-      </v-parallax>     
-      <v-parallax height="550"
-      
-        src="https://panteli.biz/static/cup-smoke.jpg">
-      </v-parallax>     
+      </v-parallax>   
+
 
       <appFooter />
     </div>
