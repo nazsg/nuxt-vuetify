@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="content">
-      {{ $moment() }}
+      <appHeader />
 
     <v-parallax height="550"
       src="https://panteli.biz/static/coffee.jpg">
