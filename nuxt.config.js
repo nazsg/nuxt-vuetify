@@ -18,7 +18,7 @@ export default {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+          'https://fonts.googleapis.com/css2?family=Caveat&family=Sacramento&family=Satisfy&family=Allerta+Stencil&family=Stardos+Stencil:wght@700&display=swap'
       }
     ]
   },

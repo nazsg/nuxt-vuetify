@@ -2,34 +2,45 @@
   <div class="wrapper">
     <div class="content">
       <!-- <appHeader /> -->
-          
-      <section class="showcase">
-        <div class="search">
-            <input type="text" placeholder="find tip">
-            <CloseCircle :size="24" fillColor="" />        
-        </div>
-        <div class="video-container">
-          <video src="https://nazs.net/static/video.mp4" autoplay muted loop></video>
-        </div>
-        <div class="content2">
-          <h3>
-            Front-end web dev
-          </h3>
-          <h4>
-            flavoured with bespoke APIs
-          </h4>
-          <p>
-            Parallax... just when scrolling almost becomes a chore
-            <nuxt-link to="/no-robots">No Robots</nuxt-link>
-          </p>
-        </div>
-      </section>
-      <section id="about">dd        
-      </section>
+        <section class="showcase">
+          <div class="video-container">
+            <video src="https://nazs.net/static/video.mp4" autoplay muted loop></video>
+          </div> 
 
-      <v-parallax height="450"
-        src="https://panteli.biz/static/coffee.jpg">
-      </v-parallax>   
+          <!-- <div v-for="(tip, index) in filteredTips" :key="index" v-html="tip.comment">
+          </div>  -->
+
+            <!-- <template v-for="(tip, index) in tips">
+              <p style="border:1px solid #999;z-index:20" v-html="tip.comment" :key="index"></p>
+            </template> -->
+
+          <div class="content2">
+            <h3>
+              Front-end web dev
+            </h3>
+            <h4>
+              flavoured with bespoke APIs
+            </h4>
+          </div>
+        </section>
+        <section>          
+        </section>
+
+        <v-parallax 
+          src="https://nazs.net/static/blue-purple.jpg">
+            <p>
+              Parallax... just when scrolling almost becomes a chore
+            </p>
+        </v-parallax>   
+      
+
+      <div>
+          <div class="search">
+              <input type="text" placeholder="find tip" v-model="keyword">
+              <CloseCircle :size="24" fillColor="" />        
+          </div>
+        <!-- {{ tips }} -->
+      </div>
 
 
       <appFooter />
@@ -39,16 +50,50 @@
 
 <script>
 export default {
-  layout: 'home'
+  layout: 'home',
+  data() {
+    return {
+      tips: ['test'],
+      keyword: '',
+      home: true
+    }
+  },
+  computed: {
+    filteredTips() {
+      return this.tips.filter( tip => {
+        return tip.comment
+      })
+    }
+  },
+  methods: {
+    hideHome() {
+      this.home = false
+    }
+  },
+  mounted() {
+    this.$axios.$get('journal/show.php?showAll&orderBy=desc')
+    .then(data => {
+      this.tips = data
+      console.log(this.tips)
+    })
+  }
 }
 </script>
 
 <style lang="scss" scoped>
  @import '../../sass-mixins/_styles';
 
+.push {
+  font-size: 80px;
+  color: #999;
+}
+
 .showcase {
   @include fullPage;
   background: url('https://nazs.net/static/wallpaper.jpg') no-repeat center center/cover;
+  justify-content: flex-start;
+  padding-top: 10%;
+  // display: none;
 }
 
 .video-container {
@@ -78,15 +123,16 @@ video {
   left: 50%;
   transform: translate(-50%, -50%)
 }
-
+section {
+  height: 10px;
+  background-color: rgb(30, 30, 31);
+}
 .search {
-  z-index: 10;
-  /* color: white; */
+  z-index: 2;
   background-color: rgba(255, 255, 255, 0.671);
   padding: 10px;
   border-radius: 7px;
-  margin-top: -450px;
-  margin-bottom: 190px;
+  margin: 40px 0 100px;
 
   input {
     margin: 0;
@@ -98,10 +144,14 @@ video {
   }  
 }
 .content2 {
-  z-index: 10;
-  background-color: rgba(170, 169, 169, 0.699);
-  padding: 10px;
+  z-index: 2;
+  display: block;
+  background-color: rgba(170, 169, 169, 0.288);
+  padding: 10px 20px;
   border-radius: 7px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.726);
+  border: 2px dashed rgba(179, 177, 177, 0.541);
   input {
     margin: 0;
     height: 30px;
@@ -110,6 +160,17 @@ video {
     font-family: Helvetica;
     letter-spacing: 2px;
   }
+  h3 {
+    // font-family: 'Satisfy', cursive;
+    font-family: 'Stardos Stencil', cursive;
+    // font-family: 'Sacramento', cursive; 
+    // font-family: 'Allerta Stencil', sans-serif;    
+  }
+  h4 {
+    font-family: 'Caveat', cursive;
+
+  }
+    font-size: 3.5rem;   
 }
 .content2 a {
   display: inline-block;
@@ -117,7 +178,6 @@ video {
   background: rgb(119, 116, 116);
   border: 1px solid #fff;
   border-radius: 5px;
-  margin-top: 25px;
   opacity: 0.5;
   color: white;
   text-decoration: none;

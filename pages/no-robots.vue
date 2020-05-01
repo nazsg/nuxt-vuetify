@@ -6,24 +6,27 @@
           <label for="name">Name:</label>
           <input type="text" placeholder="Your name" v-model="visitor.name">
         </div>
-        <div class="group email">
+        <!-- <div class="group email">
           <label for="email">Email:</label>
           <input type="text" placeholder="Your email" v-model="visitor.email">
-        </div>
+        </div> -->
         <div class="group message">
           <label for="message">Message</label>
           <textarea name="" id="" cols="30" rows="10" placeholder="Your message" v-model="visitor.message" ></textarea>
         </div>{{ pin }} {{ result }} {{ guessPin }}
         <div class="group">
-          <p>Reproduce the code above using the numbers below</p>
+          <p>Reproduce the code above by clicking on the numbers below</p>
         </div>
         <div class="group choice">
           <i v-for="(no, index) in choice" :key="index" v-html="no.n" @click="checkPin(no.d)"></i>
         </div>
         <div class="group action">
-          <a @click="resetForm" class="not4Submit"><Delete title="Reset Form" fillColor="#4f0a58" :size="36" /></a>
-          <a @click="callPin" class="not4Submit"><Refresh title="New PIN" fillColor="#4f0a58" :size="36" /></a>
-          <a @click="1" class="submit" :class="{ allowForm }"><Send  :size="36" /></a>
+          <a @click="resetForm" class="not4Submit">
+            <Delete title="Reset Form" fillColor="#4f0a58" :size="36" /></a>
+          <a @click="callPin" class="not4Submit">
+            <Refresh title="New PIN" fillColor="#4f0a58" :size="36" /></a>
+          <a @click="1" class="submit" :class="{ allowForm }">
+            <Send  :size="36" title="Submit" /></a>
         </div>
       </form>
   </div>
@@ -43,7 +46,7 @@ export default {
       result: ''
     }
   },  
-  created() {
+  mounted() {
     this.callPin()
   },
 
@@ -83,6 +86,7 @@ export default {
 .showcase {
   @include fullPage;
   background: url('https://nazs.net/static/wallpaper.jpg') no-repeat;
+  height: 100%;
 }
 
 form.robot {
@@ -93,6 +97,7 @@ form.robot {
   flex-direction: column;
   margin: 0 auto;
   border-radius: 7px;
+  margin-bottom: 25px;
 
   .group {
     display: flex;
@@ -112,12 +117,10 @@ form.robot {
   .group.action {
     flex-direction: row;
     justify-content: space-evenly;
+
     .not4Submit {
       cursor: pointer;
     }
-    // .submit {
-    //   cursor: none;
-    // }
   }
 
   .submit {
@@ -143,7 +146,6 @@ form.robot {
       font-size: 1.3em;
       color: #4f0a58;
     }
-
   }
 }
 
