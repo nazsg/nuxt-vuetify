@@ -52,6 +52,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'https://nazs.net/'
   },
   /*
   ** vuetify module configuration

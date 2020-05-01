@@ -48,7 +48,7 @@ export default {
 
 .showcase {
   @include fullPage;
-  background: url('https://nazs.net/static/wallpaper.jpg') no-repeat;
+  background: url('https://nazs.net/static/wallpaper.jpg') no-repeat center center/cover;
 }
 
 .video-container {
@@ -58,7 +58,6 @@ export default {
   top: 0;
   left: 0;
   overflow: hidden;
-  /* background: url('./cover.jpg') no-repeat center center/cover; */
 }
 .video-container:after {
   content: '';
