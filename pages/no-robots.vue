@@ -13,15 +13,15 @@
         <div class="group message">
           <label for="message">Message</label>
           <textarea name="" id="" cols="30" rows="10" placeholder="Your message"></textarea>
-        </div>{{ pin }}
+        </div>{{ pin }} {{ result }} {{ guessPin }}
         <div class="group">
           <p>Reproduce the code above using the numbers below</p>
         </div>
         <div class="group choice">
-          <i v-for="(no, index) in choice" :key="index" v-html="no.n"></i>
+          <i v-for="(no, index) in choice" :key="index" v-html="no.n" @click="checkPin(no.d)"></i>
         </div>
         <div class="group action">
-          <a @click="1">Clear</a>
+          <a @click="callPin">Clear</a>
           <a @click="1">Submit</a>
         </div>
       </form>
@@ -33,16 +33,41 @@ import norobots from '~/functions/norobots'
 export default {
   data() {
     return {
-      pin: '', choice: norobots.choice
+      pin: '', choice: norobots.choice,
+      visitor: {
+        name: '', email: '', message: ''
+      },
+      stopForm: true,
+      guessPin: '',
+      result: ''
     }
   },  
-  mounted() {
-    this.$axios.$get('noRobot')
-    .then(data => {
-      console.log(data, norobots)
-      this.pin = data      
-    })
-  }  
+  created() {
+    this.callPin()
+  },
+
+  methods: {
+    callPin() {
+      this.$axios.$get('noRobot')
+      .then(data => {
+        this.pin = data
+        this.guessPin = ''
+        this.result = ''  
+      })
+    },
+    checkPin(no) {
+      let temp = ''
+      let r = this.result
+      temp = temp.concat(no)
+      this.guessPin = this.guessPin.concat(no)
+      if(this.guessPin.length == 4) { 
+        (parseInt(this.pin) === parseInt(this.guessPin)) 
+          ? r = ' is equal to ' 
+          : r = ' is not equal to '
+        this.result = r
+      }
+    }
+  }
 }
 </script>
 
@@ -89,6 +114,7 @@ form.robot {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    user-select: none;
     i {
       font-style: normal;
       cursor: pointer;
