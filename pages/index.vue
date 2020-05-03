@@ -7,9 +7,6 @@
             <video src="https://nazs.net/static/video.mp4" autoplay muted loop></video>
           </div> 
 
-          <!-- <div v-for="(tip, index) in filteredTips" :key="index" v-html="tip.comment">
-          </div>  -->
-
             <!-- <template v-for="(tip, index) in tips">
               <p style="border:1px solid #999;z-index:20" v-html="tip.comment" :key="index"></p>
             </template> -->
@@ -26,18 +23,26 @@
         <section>          
         </section>
 
-        <v-parallax 
+        <v-parallax height="300"
           src="https://nazs.net/static/blue-purple.jpg">
+          <div class="parallax">
             <p>
               Parallax... just when scrolling almost becomes a chore
             </p>
+          </div>
         </v-parallax>   
       
 
       <div>
           <div class="search">
-              <input type="text" placeholder="find tip" v-model="keyword">
-              <CloseCircle :size="24" fillColor="" />        
+              <input type="text" placeholder="find tip" v-model="search" @keyup="result = true">
+              <CloseCircle :size="24" fillColor="" 
+                @click="result = false"/>  
+              <div v-if="result">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt voluptate placeat labore ipsa. Exercitationem sapiente, molestiae rem officia, consequatur iusto odit, vel fuga animi similique cupiditate nemo minus maxime ipsam.</p>
+              </div>
+          <div style="border-bottom: 1px solid #999" v-for="(tip, index) in filteredTips" :key="index" v-html="tip.comment">
+          </div>               
           </div>
         <!-- {{ tips }} -->
       </div>
@@ -54,15 +59,15 @@ export default {
   data() {
     return {
       tips: ['test'],
-      keyword: '',
-      home: true
+      search: '',
+      result: false
     }
   },
   computed: {
-    filteredTips() {
-      return this.tips.filter( tip => {
-        return tip.comment
-      })
+    filteredTips: function() {
+      // return this.tips.filter( (tip) => {
+      //   return tip.comment.match(this.search)
+      // })
     }
   },
   methods: {
@@ -74,15 +79,22 @@ export default {
     this.$axios.$get('journal/show.php?showAll&orderBy=desc')
     .then(data => {
       this.tips = data
-      console.log(this.tips)
+      console.log(this.tips.length, this.tips)
     })
+    // let myHTML = "<p>Go to this <a href='https://google.com'>website </b></p>";
+    // console.log(JSON.parse(JSON.stringify(myHTML)))
   }
 }
 </script>
 
 <style lang="scss" scoped>
  @import '../../sass-mixins/_styles';
-
+.banner {
+  background-color: rgb(73, 34, 34);
+  &:hover {
+    color: red; 
+  }
+}
 .push {
   font-size: 80px;
   color: #999;
