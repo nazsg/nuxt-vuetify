@@ -17,6 +17,8 @@
     "node-sass": "^4.14.0",
     "nuxt": "^2.0.0",
     "sass-loader": "^8.0.2",
+    "view-design": "^4.2.0",
+    "vue-i18n": "^8.17.4",
     "vue-material-design-icons": "^4.6.0"
   },
   "devDependencies": {

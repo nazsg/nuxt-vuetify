@@ -32,10 +32,15 @@
           </div>
         </v-parallax>   
       
-
       <div>
+      
           <div class="search">
-              <input type="text" placeholder="find tip" v-model="search" @keyup="result = true">
+            <DatePicker type="date" placeholder="Select date" style="width: 200px"></DatePicker>
+            <!-- <Icon type="md-send" size="30" /> -->
+            <!-- <Input v-model="value16" maxlength="20" show-word-limit placeholder="Enter something..." style="width: 200px" /> -->
+              <input type="text" placeholder="find tip" v-model="search" @keyup="result = true"> 
+              <Icon type="md-backspace" size="30" />
+              <Icon type="md-close-circle" size="30" />
               <CloseCircle :size="24" fillColor="" 
                 @click="result = false"/>  
               <div v-if="result">
@@ -60,7 +65,43 @@ export default {
     return {
       tips: ['test'],
       search: '',
-      result: false
+      result: false,
+      value16: '',
+      options1: {
+          shortcuts: [
+              {
+                  text: 'Today',
+                  value () {
+                      return new Date();
+                  },
+                  onClick: (picker) => {
+                      this.$Message.info('Click today');
+                  }
+              },
+              {
+                  text: 'Yesterday',
+                  value () {
+                      const date = new Date();
+                      date.setTime(date.getTime() - 3600 * 1000 * 24);
+                      return date;
+                  },
+                  onClick: (picker) => {
+                      this.$Message.info('Click yesterday');
+                  }
+              },
+              {
+                  text: 'One week',
+                  value () {
+                      const date = new Date();
+                      date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+                      return date;
+                  },
+                  onClick: (picker) => {
+                      this.$Message.info('Click a week ago');
+                  }
+              }
+          ]
+      }   
     }
   },
   computed: {
@@ -196,5 +237,9 @@ section {
 }
 .content2 a:hover {
   transform: scale(0.98);
+}
+i.ivu-icon {
+  cursor: pointer;
+  color: red;
 }
 </style>

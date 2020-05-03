@@ -36,7 +36,8 @@ export default {
   */
   plugins: [
     '~plugins/bus',
-    '~plugins/core-components'    
+    '~plugins/core-components',
+    '~plugins/iview'
   ],
   /*
   ** Nuxt.js modules
