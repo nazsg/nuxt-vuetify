@@ -1,10 +1,10 @@
 <template>
   <nav class="nav-area">
     <ul>
-      <li><nuxt-link to="/">Home</nuxt-link></li>
+      <li ><nuxt-link  to="/">Home</nuxt-link></li>
       <li class="drop-down"><a href="#">Projects</a>
-        <ul>
-          <li><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
+        <ul :class="{hideUL:el}">
+          <li @click="hide"><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
           <li><a href="#">Rest Sample</a></li>
           <li><a href="#">Holiday</a></li>
         </ul>
@@ -13,9 +13,27 @@
   </nav>  
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      el: false
+    }
+  },
+  methods: {
+    hide() {
+      this.el = true
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 $col1 : #000;
 $col2 : #262626;
+
+.nav-area ul li .hideUL {
+  display: none;
+}
 
 .nav-area {
   font-family: Arial, Helvetica, sans-serif;

@@ -10,7 +10,8 @@ eventBus.install = function (Vue) {
         myhost: 'https://panteli.biz/',
         home: [],
         no_cat: [],      
-        cold_drinks_cans: []
+        cold_drinks_cans: [],
+        tips: []
       }
     },
     methods: {
@@ -52,9 +53,13 @@ eventBus.install = function (Vue) {
       }
     },
     created() {
-      this.getHome()
-      this.getUpMenus()
-      this.getAllMenus()
+      // this.getHome()
+      // this.getUpMenus()
+      // this.getAllMenus()
+      axios.get('http://localhost/nazs.net/journal/show.php?showAll&orderBy=desc')
+      .then(data => {
+        this.tips = data
+      })
     }
   })
 }

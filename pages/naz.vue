@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="content">
+      <!-- <appHeader /> -->
         <section class="showcase">
           <div class="video-container">
             <video src="https://nazs.net/static/video.mp4" autoplay muted loop></video>
@@ -18,7 +19,7 @@
               flavoured with bespoke APIs
             </h4>
           </div>
-          <!-- <appBooking /> -->
+            <p style="z-index:9;color:white">test</p>
         </section>
         <section>          
         </section>
@@ -46,7 +47,7 @@
               <div v-if="result">
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt voluptate placeat labore ipsa. Exercitationem sapiente, molestiae rem officia, consequatur iusto odit, vel fuga animi similique cupiditate nemo minus maxime ipsam.</p>
               </div>
-          <div style="border-bottom: 1px solid #999" v-for="(tip, index) in tips" :key="index" v-html="tip.name">
+          <div style="border-bottom: 1px solid #999" v-for="(tip, index) in tips3" :key="index" v-html="tip">
           </div>            
           </div>
         <!-- {{ tips }} -->
@@ -59,7 +60,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   layout: 'home',
   data() {
@@ -80,26 +80,19 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost/nazs.net/journal/show.php?showAll&orderBy=desc')
+    this.$axios.$get('http://localhost/nazs.net/journal/show.php?showAll&orderBy=desc')
     // this.$axios.$get('journal/show.php?showAll&orderBy=desc')
-    
     .then(data => {
-        data.data.forEach( com => {
-          this.tips.push(com.comment)
-          // console.log(this.text);
-        })
-      })  
+      this.tips = data
+      // console.log(this.tips.length, this.tips)
+    })
     // let myHTML = "<p>Go to this <a href='https://google.com'>website </b></p>";
     // console.log(JSON.parse(JSON.stringify(myHTML)))
   },
   computed: {
-    bus() {
-      return this.$bus.tips
-      
-    },
     tips2() {
       return this.tips.filter( (tip) => {
-        // return tip.name.includes(this.search)
+        return tip //.comment.includes(this.search)
       })
     },
     tips3() {

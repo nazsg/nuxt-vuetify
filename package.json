@@ -14,9 +14,13 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/moment": "^1.6.0",
     "@nuxtjs/vuetify": "0.5.5",
+    "intersection-observer": "^0.10.0",
     "node-sass": "^4.14.0",
     "nuxt": "^2.0.0",
+    "nuxt-polyfill": "^1.0.3",
     "sass-loader": "^8.0.2",
+    "smoothscroll-polyfill": "^0.4.4",
+    "url-polyfill": "^1.1.8",
     "view-design": "^4.2.0",
     "vue-i18n": "^8.17.4",
     "vue-material-design-icons": "^4.6.0"
