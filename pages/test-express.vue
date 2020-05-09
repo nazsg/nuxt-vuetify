@@ -3,6 +3,8 @@
     {{ data }}
     <button @click="cors1">CORS</button>
     <button @click="cors2">CORS2</button>
+    <p>{{$route.query._test-express}}</p>
+    <!-- <p>{{$route.query.msg}}</p> -->
   </div>
 </template>
 

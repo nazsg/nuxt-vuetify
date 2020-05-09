@@ -3,7 +3,7 @@
     <div class="content">
         <section class="showcase">
           <div class="video-container">
-            <video src="https://nazs.net/static/video.mp4" autoplay muted loop></video>
+            <video src="/video.mp4" autoplay muted loop></video>
           </div> 
 
             <!-- <template v-for="(tip, index) in tips">
@@ -24,7 +24,7 @@
         </section>
 
         <v-parallax height="300"
-          src="https://nazs.net/static/blue-purple.jpg">
+          src="/blue-purple.jpg">
           <div class="parallax">
             <p>
               Parallax... just when scrolling almost becomes a chore

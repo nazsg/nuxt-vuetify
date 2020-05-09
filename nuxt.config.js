@@ -37,8 +37,12 @@ export default {
   plugins: [
     '~plugins/bus',
     '~plugins/core-components',
-    '~plugins/iview'
+    '~plugins/iview',
+    '~store/index'
   ],
+  router : {
+    // middleware: []
+  },
   /*
   ** Nuxt.js modules
   */
@@ -78,6 +82,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
+   vendor: ['iview'],
     extend(config, ctx) {
     }
   }

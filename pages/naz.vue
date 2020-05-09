@@ -71,7 +71,8 @@ export default {
         { "id": 1, "name": "Laki", "dob": "0208", "postcode": "ct3", "comments": "", "timestamp": "2017-09-08 23:50:53" },
         { "id": 2, "name": "Dave", "dob": "2708", "postcode": "ct4", "comments": "", "timestamp": "0000-00-00 00:00:00" },
         { "id": 3, "name": "Naz", "dob": "0306", "postcode": "ct6", "comments": "", "timestamp": "2018-05-12 10:39:32" }        
-      ]
+      ],
+      test: ''
     }
   },
   methods: {
