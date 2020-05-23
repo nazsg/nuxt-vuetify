@@ -29,7 +29,7 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
+  css: [ '~assets/style/main.scss'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -37,8 +37,8 @@ export default {
   plugins: [
     '~plugins/bus',
     '~plugins/core-components',
-    '~plugins/iview',
-    '~store/index'
+    // '~plugins/iview',
+    // '~store/index'
   ],
   router : {
     // middleware: []

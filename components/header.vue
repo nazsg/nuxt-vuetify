@@ -2,10 +2,14 @@
   <nav class="nav-area">
     <ul>
       <li ><nuxt-link  to="/">Home</nuxt-link></li>
-      <li class="drop-down"><a href="#">Projects</a>
-        <ul :class="{hideUL:el}">
+      <li class="drop-down" :class="{hideUL : hideUL}"
+        @mouseover = "hideUL = false"
+      >
+        <a href="#">Projects
+      </a>
+        <ul >
           <li @click="hide"><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
-          <li><a href="#">Rest Sample</a></li>
+          <li  @click="hide"><nuxt-link to="/naz2">Naz2</nuxt-link></li>
           <li><a href="#">Holiday</a></li>
         </ul>
       </li>
@@ -17,12 +21,14 @@
 export default {
   data() {
     return {
-      el: false
+      show: false,
+      hideUL: false
     }
   },
   methods: {
     hide() {
-      this.el = true
+      this.show = !this.show
+      this.hideUL = true
     }
   }
 }
@@ -30,9 +36,21 @@ export default {
 <style lang="scss" scoped>
 $col1 : #000;
 $col2 : #262626;
+$a-color: #290953;
+$hover: #532391;
+$a-color2: #3f1772;
+$a-border: #b386ee;
 
-.nav-area ul li .hideUL {
+.afterHover {
+  ul li {
+    display: none;
+  }
+}
+
+.hideUL {
+  ul li {
   display: none;
+  }
 }
 
 .nav-area {
@@ -74,9 +92,11 @@ $col2 : #262626;
     color: white;
     text-decoration: none;
     text-align: center;
+    border: 1px solid #000;
 
     &:hover {
-      background-color: #e84393;
+      background-color: $a-color;
+      border: 1px solid $a-border;
       color: white;
     }
   }
@@ -88,13 +108,14 @@ $col2 : #262626;
       padding: 5px;
     }
     li {
-       a {
+      a {
         // display: block;
-        background: #000;
+        background: $a-color2;
         color: #ffffff;
+        border-color: $a-color2;
 
         &:hover {
-          background: #e84393;
+          background: $hover;
         }
       }
     }

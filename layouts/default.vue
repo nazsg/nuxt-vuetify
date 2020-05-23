@@ -9,6 +9,9 @@
 </template>
 
 <style lang="scss">
+$color: #4f0a58;
+$color2: #b345c2;
+
 html {
   overflow: auto;
 }

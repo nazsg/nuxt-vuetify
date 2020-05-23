@@ -2,32 +2,33 @@
   <div class="showcase">
     
       <form class="robot">
-        <div class="group name">
-          <label for="name">Name:</label>
-          <input type="text" placeholder="Your name" v-model="visitor.name">
-        </div>
-        <!-- <div class="group email">
-          <label for="email">Email:</label>
-          <input type="text" placeholder="Your email" v-model="visitor.email">
-        </div> -->
-        <div class="group message">
-          <label for="message">Message</label>
-          <textarea name="" id="" cols="30" rows="10" placeholder="Your message" v-model="visitor.message" ></textarea>
-        </div>{{ pin }} {{ result }} {{ guessPin }}
-        <div class="group">
-          <p>Reproduce the code above by clicking on the numbers below</p>
-        </div>
-        <div class="group choice">
-          <i v-for="(no, index) in choice" :key="index" v-html="no.n" @click="checkPin(no.d)"></i>
-        </div>
-        <div class="group action">
-          <a @click="resetForm" class="not4Submit">
-            <Delete title="Reset Form" fillColor="#4f0a58" :size="36" /></a>
-          <a @click="callPin" class="not4Submit">
-            <Refresh title="New PIN" fillColor="#4f0a58" :size="36" /></a>
-          <a @click="1" class="submit" :class="{ allowForm }">
-            <Send  :size="36" title="Submit" /></a>
-        </div>
+        <ul>
+          <li class="name">
+            <label for="name">Name</label>
+            <input type="text" placeholder="Your name" v-model="visitor.name">
+          </li>
+          <li class="message">
+            <label for="message">Message</label>
+            <textarea name="" id="" cols="30" rows="10" placeholder="Your message" v-model="visitor.message" ></textarea>
+          </li>
+          <template v-if="pin.length > 0">
+            <li style="font-style:italic">
+              Click on the numbers in green ({{pin.toString()}}) to enable form
+            </li>
+            <li class=" choice">
+              <template v-for="(no, index) in choice">
+                <i v-if="pin.includes(no.d)" :key="index" v-html="no.n"   
+                  class="pin" @click="checkPin(no.d)"                
+                ></i>
+                <!-- <i v-else :key="index" v-html="no.n" class="others"></i> -->
+              </template>
+            </li>
+          </template>
+          <li class=" action">
+            <button @click.prevent="resetForm">Clear</button>
+            <button @click.prevent="submit" class="submit" :class="{allowForm}">Submit</button>
+          </li>
+        </ul>
       </form>
   </div>
 </template>
@@ -37,16 +38,16 @@ import norobots from '~/functions/norobots'
 export default {
   data() {
     return {
-      pin: '', choice: norobots.choice,
+      pin: [], choice: norobots.choice,
       visitor: {
         name: '', email: '', message: ''
       },
-      allowForm: false,
-      guessPin: '',
-      result: ''
+      allowForm: true,
+      guessPin: [],
+      result: ''      
     }
   },  
-  mounted() {
+  created() {
     this.callPin()
   },
 
@@ -55,26 +56,26 @@ export default {
       this.visitor = {}
     },
     callPin() {
+      this.pin = []
       this.$axios.$get('noRobot')
       .then(data => {
-        this.pin = data
-        this.guessPin = ''
+        this.pin.push(Math.floor( (data /1000) %10))
+        this.pin.push(Math.floor( (data /100) %10))
+        this.pin.push(Math.floor( (data /10) %10))
+        this.pin.push(Math.floor( (data /1) %10))
+        this.pin = this.pin
+          .filter( (val, index, self) => self.indexOf(val) === index )
+        this.guessPin = []
         this.result = ''
-        this.allowForm = false  
-      })
+        this.allowForm = false    
+      })     
     },
     checkPin(no) {
-      let temp = ''
-      temp = temp.concat(no)
-      this.guessPin = this.guessPin.concat(no)
-      if(this.guessPin.length == 4) { 
-        if(parseInt(this.pin) === parseInt(this.guessPin)) {
-          this.result = ' is equal to ' 
-          this.allowForm = true
-        } else {
-          this.result = ' is not equal to '
-        }
-      }
+      this.pin = this.pin.filter(p => p !== no)
+      if(this.pin.length == 0) this.allowForm = true
+    },
+    submit() {
+
     }
   }
 }
@@ -82,6 +83,9 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../sass-mixins/_styles';
+$color: #240529;
+$color2: #b345c2;
+$border-size: 0px;
 
 .showcase {
   @include fullPage;
@@ -90,61 +94,116 @@ export default {
 }
 
 form.robot {
+  font-family: Roboto;
+  color: $color;
   background-color: rgba(255, 255, 255, 0.842);
-  // color: #000;
   width: 80%;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   border-radius: 7px;
   margin-bottom: 25px;
-
-  .group {
+  padding: 20px;
+  ::placeholder {
+    color: #9e74b9;
+  }
+  li {
+    @include border1;
     display: flex;
-    margin: 10px 20px;
-    border: 1px dotted #999;
-    flex-direction: column;
+    margin: 10px 0px;
+    // flex-direction: column;
     justify-content: space-around;
-
-    input {
-      border: 1px dotted #666;
+    label {
+      flex-basis: 30%;
+      padding: 10px;
+      // background-color: rgb(121, 104, 104);
+    }
+    input, textarea {
+      border: 1px solid #4f0a5862;
+      padding: 10px;
+      width: 100%;
     }     
   }
-  .group.name, .group.email, .group.message {
-    justify-content: start;
-    align-items: flex-start;
+  li.name, li.message {
+    // width: 500px;
+    margin: 10px auto;
+    padding: 5px;
+    background-color: #fff;
+    flex-direction: row;
+    border: $border-size dotted #999;
+    text-align: right;
+    @media (max-width: 600px) {
+      flex-direction: column;
+      label {
+        text-align: left;
+      }
+    }
+    @media (max-width: 750px) {
+      width: 100%;
+    }
   }
-  .group.action {
+  li.action {
     flex-direction: row;
     justify-content: space-evenly;
 
-    .not4Submit {
-      cursor: pointer;
+    button {
+      outline: none;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #fff;
+      &:hover {
+        background-color: rgb(129, 127, 127);
+        // border-color: #666;
+      }
     }
-  }
-
-  .submit {
-  color: rgb(146, 144, 144);
-  cursor: none;
-}
-  .allowForm {
-    color: #4f0a58;
-    cursor: pointer;
+    button.submit {
+      color: rgb(219, 218, 218);
+      background-color: #a09c9c;
+      cursor: none; 
+      cursor: not-allowed;
+    }
+    button.allowForm {
+      background-color: #fff;
+      color: inherit;
+      cursor: pointer;
+      &:hover {
+        background-color: rgb(129, 127, 127);
+      }
+    }
   }
   .choice {
     display: inline-block;
     font-size: 40px;
-    cursor: pointer;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     user-select: none;
+      flex-wrap: wrap;
+    // border-top: 1px solid $color;
+    // border-bottom: 1px solid $color;
+    i.pin {
+      color: green;
+      cursor: pointer;
+      &:hover {
+        color: #0c0c0c;
+      }
+    }
+    i.others {
+      color: rgb(76, 76, 102);
+    }      
     i {
       font-style: normal;
-      cursor: pointer;
+      transition: .3s;
       letter-spacing: .2em;
-      font-size: 1.3em;
-      color: #4f0a58;
+      font-size: 1.2em;
+      color: $color;
+    }
+    @media (max-width: 600px) {
+      justify-content: center;
+      i {        
+        // font-size: 1rem;
+        transition: .3s;
+      }
     }
   }
 }

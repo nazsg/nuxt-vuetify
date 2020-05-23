@@ -85,7 +85,7 @@ export default {
     
     .then(data => {
         data.data.forEach( com => {
-          this.tips.push(com.comment)
+          // this.tips.push(com.comment)
           // console.log(this.text);
         })
       })  
