@@ -6,9 +6,7 @@ export default {
     {n: "&#x02779", d:4},
     {n: "&#x277A", d:5},
     {n: "&#x277B", d:6},
-    {n: "&#x277C", d:7},
-    {n: "&#x277D", d:8},
-    {n: "&#x277E", d:9}
+    {n: "&#x277C", d:7}
     ]
   ,tStatus : false
   
@@ -31,3 +29,6 @@ export default {
   }
 
 }
+
+// {n: "&#x277D", d:8},
+// {n: "&#x277E", d:9}

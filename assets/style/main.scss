@@ -1,7 +1,89 @@
+@import '../../../mixins/common';
 $mainColor: rgb(9, 202, 209);
 
 .showcase {
   .robot li.name label {
     // color: $mainColor;
   }
+}
+
+.restaurant {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+
+  .cartSummary {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 15px auto;
+    // @include border1;
+    div {
+      // height: 35px;
+      // line-height: 30px;
+    }
+  }
+  button {
+    border: 1px solid #999;
+    background-color: #fff;
+    padding: 10px;      
+    margin: 5px;
+    outline: none;
+    
+    &:hover {
+      background-color: #dadada;
+    }
+  }
+  button.selected {
+    background-color: #c9c9c9;
+  }
+  button.others {
+    background-color: #f2f8f5;
+  }
+  .orderNos {
+    * {
+      margin: 5px;
+    }
+  }
+  .menus {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    
+    .menuCategories {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }  
+  }
+
+  ul.table {
+    width: 95%;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+    
+    li {
+      padding-left: 20px;
+      display: flex;
+      background-color: #ebebeb;
+      padding: 10px 0;
+      line-height: 1.5;
+      &:nth-child(even) {
+        background-color: #cfcfcf;
+      }
+      
+      .item {
+        width: 70%;
+      }
+      .price {
+        font-family: Courier;
+      }
+    }
+  }
+  
 }

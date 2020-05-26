@@ -10,6 +10,7 @@
         <ul >
           <li @click="hide"><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
           <li  @click="hide"><nuxt-link to="/naz2">Naz2</nuxt-link></li>
+          <li  @click="hide"><nuxt-link to="/restaurant">Res Sample</nuxt-link></li>
           <li><a href="#">Holiday</a></li>
         </ul>
       </li>

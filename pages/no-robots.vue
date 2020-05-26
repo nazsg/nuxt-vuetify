@@ -1,6 +1,5 @@
 <template>
-  <div class="showcase">
-    
+  <div class="showcase">    
       <form class="robot">
         <ul>
           <li class="name">
@@ -13,14 +12,15 @@
           </li>
           <template v-if="pin.length > 0">
             <li style="font-style:italic">
-              Click on the numbers in green ({{pin.toString()}}) to enable form
+              Click on the numbers to enable form 
             </li>
             <li class=" choice">
               <template v-for="(no, index) in choice">
-                <i v-if="pin.includes(no.d)" :key="index" v-html="no.n"   
+                <i v-if="pin.includes(no.d)" :key="index" 
+                  v-html="no.n" 
                   class="pin" @click="checkPin(no.d)"                
                 ></i>
-                <!-- <i v-else :key="index" v-html="no.n" class="others"></i> -->
+                <!-- <i v-else :key="index" class="others">&#10004;</i> -->
               </template>
             </li>
           </template>
@@ -44,7 +44,7 @@ export default {
       },
       allowForm: true,
       guessPin: [],
-      result: ''      
+      pin2: []
     }
   },  
   created() {
@@ -70,8 +70,23 @@ export default {
         this.allowForm = false    
       })     
     },
+    genPin() {
+      let all = []
+      // let r = Math.floor(Math.random() *7) +1 
+      // let n1, n2, n3, n4
+      let n1 = Math.floor(Math.random() *7) +1 
+      let n2 = Math.floor(Math.random() *7) +1 
+      let n3= Math.floor(Math.random() *7) +1 
+      let n4 = Math.floor(Math.random() *7) +1 
+      all.push(n1)
+      all.push(n2)
+      all.push(n3)
+      all.push(n4)
+      this.pin = all.filter( (val, index, self) => self.indexOf(val) === index )
+      // console.log(all)
+    },
     checkPin(no) {
-      this.pin = this.pin.filter(p => p !== no)
+      this.pin = this.pin.filter(p => p !== no) // remove clicked no from the Pin array
       if(this.pin.length == 0) this.allowForm = true
     },
     submit() {
@@ -94,6 +109,9 @@ $border-size: 0px;
 }
 
 form.robot {
+  * {
+    transition: 300ms;
+  }
   font-family: Roboto;
   color: $color;
   background-color: rgba(255, 255, 255, 0.842);
@@ -144,13 +162,14 @@ form.robot {
   }
   li.action {
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
 
     button {
       outline: none;
       padding: 10px;
       background-color: #fff;
       border: 1px solid #fff;
+      margin: 0 20px;
       &:hover {
         background-color: rgb(129, 127, 127);
         // border-color: #666;
@@ -176,11 +195,9 @@ form.robot {
     font-size: 40px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     user-select: none;
       flex-wrap: wrap;
-    // border-top: 1px solid $color;
-    // border-bottom: 1px solid $color;
     i.pin {
       color: green;
       cursor: pointer;
