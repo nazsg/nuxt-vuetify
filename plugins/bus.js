@@ -56,10 +56,10 @@ eventBus.install = function (Vue) {
       // this.getHome()
       // this.getUpMenus()
       // this.getAllMenus()
-      axios.get('http://localhost/nazs.net/journal/show.php?showAll&orderBy=desc')
-      .then(data => {
-        this.tips = data
-      })
+      // axios.get('journal/show.php?showAll&orderBy=desc')
+      // .then(data => {
+      //   this.tips = data
+      // })
     }
   })
 }

@@ -80,7 +80,7 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost/nazs.net/journal/show.php?showAll&orderBy=desc')
+    axios.get('journal/show.php?showAll&orderBy=desc')
     // this.$axios.$get('journal/show.php?showAll&orderBy=desc')
     
     .then(data => {

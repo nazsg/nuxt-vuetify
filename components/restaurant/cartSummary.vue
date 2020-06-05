@@ -4,20 +4,25 @@
       <receipt /> Order no: {{selected}}
     </div>
     <div>
-      <sigma /> TOTAL
+      <sigma /> 
+      {{$store.getters['restaurant/get_total']}}
+      <!-- {{$store.getters['restaurant/get_cart_total']}}  -->
     </div>
     <div>
-       <cart />, NUMBER_OF_ITEMS
+        <cartIcon />  
+        <span>
+          {{$store.getters['restaurant/get_count']}}
+        </span>
     </div>
   </div>
 </template>
 
 <script>
-import cart from 'vue-material-design-icons/CartOutline.vue'
+import cartIcon from 'vue-material-design-icons/Cart.vue'
 import receipt from 'vue-material-design-icons/Receipt.vue'
 import sigma from 'vue-material-design-icons/Sigma.vue'
 export default {
-  components: { cart, receipt, sigma },
-  props: [ 'selected']
+  components: { cartIcon, receipt, sigma },
+  props: [ 'selected'],
 }
 </script>

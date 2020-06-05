@@ -13,6 +13,7 @@ export default {
   methods: {
     setOrder(val) {
       this.$emit('setOrder', val)
+      this.$store.commit('restaurant/set_current_order', val)
     }
   }
 }

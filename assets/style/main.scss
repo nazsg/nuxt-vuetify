@@ -66,19 +66,35 @@ $mainColor: rgb(9, 202, 209);
     margin: 0 auto;
     padding: 0;
     text-align: left;
-    
+    .qty-in-cart, .add, .minus {
+      display: inline-block;
+      margin-left: 20px;
+    }
+    .add, .minus {
+      cursor: pointer;    
+      &:hover {
+        color: rgb(24, 21, 21);
+      }
+    }
+    .add {
+      color: rgb(77, 77, 240);
+    }
+    .minus {
+      color: rgb(202, 52, 77);  
+    }
     li {
       padding-left: 20px;
       display: flex;
       background-color: #ebebeb;
       padding: 10px 0;
+      margin-bottom: 4px;
       line-height: 1.5;
-      &:nth-child(even) {
-        background-color: #cfcfcf;
-      }
+      user-select: none;
+      @include alt;
       
       .item {
-        width: 70%;
+        width: 50%;
+        padding: 0 15px;
       }
       .price {
         font-family: Courier;
