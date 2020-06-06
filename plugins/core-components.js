@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
 import appHeader from '@/components/header'
-import appButton from '../../vue-components/Button'
 import appFooter from '@/components/footer'
 import appBooking from '@/components/booking'
 
@@ -12,7 +11,6 @@ import DeleteIcon from 'vue-material-design-icons/Delete.vue';
 import RefreshIcon from 'vue-material-design-icons/Refresh.vue';
 
 Vue.component('appHeader', appHeader)
-Vue.component('appButton', appButton)
 Vue.component('appFooter', appFooter)
 Vue.component('appBooking', appBooking)
 

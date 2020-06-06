@@ -10,7 +10,7 @@
 #naz {
   h1 { color: #ddd}
   @include fullPage;
-  background-image: url('/blue-and-purple-cosmic-sky.jpg');
+  background-image: url('/blue-purple.jpg');
   height: 100%;
 }
 </style>

@@ -5,8 +5,20 @@ $mainColor: rgb(9, 202, 209);
   .robot li.name label {
     // color: $mainColor;
   }
+  .results {
+    // color: blue;
+    // font-size: 2rem;
+    // position: absolute;
+    // top: 140px;
+    background-color: #ffffff8e;
+    width: 700px;
+    border-radius: 10px;    
+    // display: none;
+  }
 }
-
+.hide {
+  display: none;
+}
 .restaurant {
   text-align: center;
   display: flex;

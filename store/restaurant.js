@@ -53,14 +53,14 @@ export const mutations = {
       }
     })
   },
-  set_count(state, arg) { // for buttons to trigger in showOrders
+  set_count(state, arg) { 
     let [cart] = state.orders
       .filter(order => order.id == arg)
       .map(order => order.cart)
     state.count = cart
       .map(c => c.qty).reduce( (sum, num) => (sum + num), 0)
   },
-  set_total(state, arg) { // for buttons to trigger in showOrders
+  set_total(state, arg) { 
     let [cart] = state.orders
       .filter(order => order.id == arg)
       .map(or => or.cart)

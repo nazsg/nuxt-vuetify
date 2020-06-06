@@ -1,57 +1,28 @@
 <template>
   <div class="wrapper">
     <div class="content">
-        <section class="showcase">
-          <div class="video-container">
+        <section class="showcase" @click.self="init">
+          <div class="video-container" :class="{hide}">
             <video src="/video.mp4" autoplay muted loop></video>
           </div> 
 
-            <!-- <template v-for="(tip, index) in tips">
-              <p style="border:1px solid #999;z-index:20" v-html="tip.comment" :key="index"></p>
-            </template> -->
-
-          <div class="content2">
+          <div class="content2" :class="{focus}" >
             <h3>
               Front-end web dev
             </h3>
             <h4>
               flavoured with bespoke APIs
             </h4>
+            <input type="text" placeholder="find scratch pad"  @keydown="search"
+              v-model="keyword"
+            > 
           </div>
-          <!-- <appBooking /> -->
+            <div class="results">
+              <div v-for="(data, index) in filteredTips" :key="index" v-html="data"></div>
+            </div>
+
+
         </section>
-        <section>          
-        </section>
-
-        <v-parallax height="300"
-          src="/blue-purple.jpg">
-          <div class="parallax">
-            <p>
-              Parallax... just when scrolling almost becomes a chore
-            </p>
-          </div>
-        </v-parallax>   
-      
-      <div>
-      
-          <div class="search">
-
-            <!-- <Icon type="md-send" size="30" /> -->
-            <!-- <Input v-model="value16" maxlength="20" show-word-limit placeholder="Enter something..." style="width: 200px" /> -->
-              <input type="text" placeholder="find tip" v-model="search" @keyup="result = true"> 
-              <Icon type="md-backspace" size="30" />
-              <Icon type="md-close-circle" size="30" />
-              <CloseCircle :size="24" fillColor="" 
-                @click="result = false"/>  
-              <div v-if="result">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt voluptate placeat labore ipsa. Exercitationem sapiente, molestiae rem officia, consequatur iusto odit, vel fuga animi similique cupiditate nemo minus maxime ipsam.</p>
-              </div>
-          <div style="border-bottom: 1px solid #999" v-for="(tip, index) in tips" :key="index" v-html="tip.name">
-          </div>            
-          </div>
-        <!-- {{ tips }} -->
-      </div>
-
 
       <appFooter />
     </div>
@@ -65,48 +36,39 @@ export default {
   data() {
     return {
       tips: ['test'],
-      search: '',
+      keyword: '',
       result: false,
-      value: [
-        { "id": 1, "name": "Laki", "dob": "0208", "postcode": "ct3", "comments": "", "timestamp": "2017-09-08 23:50:53" },
-        { "id": 2, "name": "Dave", "dob": "2708", "postcode": "ct4", "comments": "", "timestamp": "0000-00-00 00:00:00" },
-        { "id": 3, "name": "Naz", "dob": "0306", "postcode": "ct6", "comments": "", "timestamp": "2018-05-12 10:39:32" }        
-      ]
+      focus: false,
+      hide: false,
     }
   },
   methods: {
     hideHome() {
       this.home = false
+    },
+    search() {
+      this.focus = true
+      this.hide = true
+    },
+    init() {
+      this.focus = false
+      this.hide = false
+      console.log('init')
     }
   },
   created() {
-    axios.get('journal/show.php?showAll&orderBy=desc')
-    // this.$axios.$get('journal/show.php?showAll&orderBy=desc')
-    
-    .then(data => {
-        data.data.forEach( com => {
-          // this.tips.push(com.comment)
-          // console.log(this.text);
-        })
-      })  
-    // let myHTML = "<p>Go to this <a href='https://google.com'>website </b></p>";
-    // console.log(JSON.parse(JSON.stringify(myHTML)))
+    this.$axios.get('journal/show.php?showAll&orderBy=desc')
+      .then(data => this.tips = data.data.map(d => d.comment))
   },
   computed: {
     bus() {
-      return this.$bus.tips
-      
+      return this.$bus.tips      
     },
-    tips2() {
-      return this.tips.filter( (tip) => {
-        // return tip.name.includes(this.search)
+    filteredTips() {
+      return this.tips.filter( tip => {
+        return tip.toLowerCase().match(this.keyword.toLowerCase())
       })
     },
-    tips3() {
-      return this.tips.filter( (tip) => {
-        // return tip.name.includes('a')
-      })
-    }
   }
 }
 </script>
@@ -129,6 +91,7 @@ export default {
   background: url('https://nazs.net/static/wallpaper.jpg') no-repeat center center/cover;
   justify-content: flex-start;
   padding-top: 10%;
+  // height: 100%;
   // display: none;
 }
 
@@ -180,8 +143,9 @@ section {
   }  
 }
 .content2 {
-  z-index: 2;
+  // z-index: 2;
   display: block;
+  position: absolute;
   background-color: rgba(170, 169, 169, 0.288);
   padding: 10px 20px;
   border-radius: 7px;
@@ -204,10 +168,15 @@ section {
   }
   h4 {
     font-family: 'Caveat', cursive;
-
   }
     font-size: 3.5rem;   
 }
+.focus {
+  font-size: 20px;
+  top: 10px;
+  transition: .5s;
+}
+
 .content2 a {
   display: inline-block;
   padding: 10px 30px;

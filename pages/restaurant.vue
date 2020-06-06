@@ -7,12 +7,10 @@
       <menus v-if="selectedOrder != ''" />
     </div>
     <br/>
-    <cartDetails />
   </div>
 </template>
 
 <script>
-import cartDetails from '~/components/restaurant/cart-details'
 import menus from '~/components/restaurant/showMenus'
 import orders from '~/components/restaurant/showOrders'
 import cart from '~/components/restaurant/cartSummary'
@@ -23,7 +21,7 @@ export default {
       selectedOrder: '',      
     }
   },
-  components: { menus, orders, cart, cartDetails },
+  components: { menus, orders, cart },
   methods: {
     send() {
       this.$store.commit('restaurant/set_orders', 'testing commit')
