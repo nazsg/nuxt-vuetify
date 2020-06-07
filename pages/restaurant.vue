@@ -1,6 +1,6 @@
 <template>
   <div class="restaurant">
-    <h1>Restaurant Order-Taking App</h1>
+    <h1>Order-Taking Web App</h1>
     <div>
       <cart :selected="selectedOrder" :total="total" :count="count" />
       <orders :selected="selectedOrder" :orders="orderIDs" v-on:setOrder="selectedOrder = arguments[0]" />

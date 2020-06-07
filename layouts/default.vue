@@ -29,7 +29,7 @@ html {
     @include fullPage;
     background-image: url("/wallpaper.jpg");
     justify-content: flex-start;
-
+    height: 100%;
     .dimBanner {
       // position: absolute;
       // z-index: -9;
@@ -75,6 +75,9 @@ html {
       margin: 0 auto;
       margin-top: -120px;
       transition: 0.3s;
+      @media (max-width: 500px) {
+        margin-top: -200px;
+      }
       input {
         display: inline-block;
         width: 350px;
@@ -96,8 +99,7 @@ html {
       color: #ccc;
     }
     .results {
-      position: relative;
-      width: 60%;
+      width: 80%;
       padding: 5px;
       margin: 20px auto;
       p {
@@ -108,11 +110,14 @@ html {
         background-color: #ccc9c9a2;
         border: 2px dashed rgb(241, 241, 241);
         transform: rotate(2deg);
+        overflow: auto;
+        div {
+          width: 100%;
+        }
       }
-          p:nth-child(even) {
-          // transform: rotate(-2deg);
-  
-          }
+      @media (max-width: 500px) {
+        width: 95%;
+      }
     }
   }
 }
