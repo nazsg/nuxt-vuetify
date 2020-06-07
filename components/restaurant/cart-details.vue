@@ -2,6 +2,7 @@
   <div>
     <div class="cart-details">
       <h4>Cart Details</h4>
+
       <ul class="header">
         <li class="item">Item</li>
          <li>Quantity</li> 
@@ -10,18 +11,33 @@
       </ul>
       <ul v-for="(cart, index) in cart_details" :key="index">
         <li class="item">{{ cart.item }}</li> 
-        <li>{{ cart.qty }}</li>
+        <li>{{ cart.qty }} </li>
+        <li>
+          <cartPlus title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), 1])" /> 
+          <cartMinus title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), -1])" />
+          </li>
         <li>{{ cart.price }}</li>
         <li>{{ (cart.price * cart.qty).toFixed(2) }}</li>
       </ul>
       <hr />
-      {{total}}
+      <ul class="total">
+        <li>{{$store.getters['restaurant/get_count']}}</li>
+        <li>{{$store.getters['restaurant/get_total']}}</li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import cartPlus from 'vue-material-design-icons/CartPlus.vue'
+import cartMinus from 'vue-material-design-icons/CartMinus.vue'
 export default {  
+  components: { cartPlus, cartMinus },
+  methods: {
+    add_to_cart(val) {
+      this.$store.commit("restaurant/add_to_cart", val);
+    }
+  },  
   computed: {
     current_order() {
       let curr = this.$store.getters['restaurant/get_current_order']

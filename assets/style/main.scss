@@ -5,6 +5,18 @@ $mainColor: rgb(9, 202, 209);
   .robot li.name label {
     // color: $mainColor;
   }
+  .noshow, .video-container {
+    display: none;
+  }
+  .video {
+    background-color: #fff;
+    width: 600px;
+    margin: 0 auto;
+    video {
+      width:90%;height:100%
+
+    }
+  }
   .results {
     // color: blue;
     // font-size: 2rem;
@@ -71,7 +83,12 @@ $mainColor: rgb(9, 202, 209);
       width: 100%;
     }  
   }
-
+  .cart-details {
+    .total {
+      display: flex;
+      justify-content: center;
+    }
+  }
   ul.table {
     width: 95%;
     list-style-type: none;

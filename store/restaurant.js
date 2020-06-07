@@ -41,7 +41,7 @@ export const mutations = {
         for (let i in order.cart) {          
           if (order.cart[i].id == arg[0]) {
             order.cart[i].qty += arg[3] // add or minus depending on arg[3]     
-            if(order.cart[i].qty === 0) order.cart.pop(order.cart[i]) // remove
+            if(order.cart[i].qty === 0) (order.cart.splice(i,1)) // remove item            
             this.commit('restaurant/set_total', state.current_order)
             this.commit('restaurant/set_count', state.current_order)
             return
