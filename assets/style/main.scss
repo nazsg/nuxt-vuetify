@@ -1,11 +1,12 @@
-@import '../../../mixins/common';
+@import "../../../mixins/common";
 $mainColor: rgb(9, 202, 209);
 
 .showcase {
   .robot li.name label {
     // color: $mainColor;
   }
-  .noshow, .video-container {
+  .noshow,
+  .video-container {
     display: none;
   }
   .video {
@@ -13,8 +14,8 @@ $mainColor: rgb(9, 202, 209);
     width: 600px;
     margin: 0 auto;
     video {
-      width:90%;height:100%
-
+      width: 90%;
+      height: 100%;
     }
   }
   .results {
@@ -24,7 +25,7 @@ $mainColor: rgb(9, 202, 209);
     // top: 140px;
     background-color: #ffffff8e;
     width: 700px;
-    border-radius: 10px;    
+    border-radius: 10px;
     // display: none;
   }
 }
@@ -52,10 +53,10 @@ $mainColor: rgb(9, 202, 209);
   button {
     border: 1px solid #999;
     background-color: #fff;
-    padding: 10px;      
+    padding: 10px;
     margin: 5px;
     outline: none;
-    
+
     &:hover {
       background-color: #dadada;
     }
@@ -66,22 +67,29 @@ $mainColor: rgb(9, 202, 209);
   button.others {
     background-color: #f2f8f5;
   }
+  @mixin itemHeader {
+    letter-spacing: 8px;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
   .orderNos {
-    * {
-      margin: 5px;
+    h5 {
+      @include itemHeader;
     }
   }
   .menus {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    h5 {
+      @include itemHeader;
+    }
 
-    
     .menuCategories {
       display: flex;
-      justify-content: center;
-      width: 100%;
-    }  
+      justify-content: space-around;
+    }
   }
   .cart-details {
     .total {
@@ -95,12 +103,15 @@ $mainColor: rgb(9, 202, 209);
     margin: 0 auto;
     padding: 0;
     text-align: left;
-    .qty-in-cart, .add, .minus {
+    .qty-in-cart,
+    .add,
+    .minus {
       display: inline-block;
       margin-left: 20px;
     }
-    .add, .minus {
-      cursor: pointer;    
+    .add,
+    .minus {
+      cursor: pointer;
       &:hover {
         color: rgb(24, 21, 21);
       }
@@ -109,7 +120,7 @@ $mainColor: rgb(9, 202, 209);
       color: rgb(77, 77, 240);
     }
     .minus {
-      color: rgb(202, 52, 77);  
+      color: rgb(202, 52, 77);
     }
     li {
       padding-left: 20px;
@@ -120,7 +131,7 @@ $mainColor: rgb(9, 202, 209);
       line-height: 1.5;
       user-select: none;
       @include alt;
-      
+
       .item {
         width: 50%;
         padding: 0 15px;
@@ -130,5 +141,4 @@ $mainColor: rgb(9, 202, 209);
       }
     }
   }
-  
 }

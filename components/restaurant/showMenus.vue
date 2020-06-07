@@ -1,5 +1,5 @@
 <template>
-  <div class="menus">
+  <div class="menus">        
     <categories v-on:relay="category = arguments[0]"    
       :category="category" :menus="menuCategories" />
     <helperTable :menus="menus" :category="category" />

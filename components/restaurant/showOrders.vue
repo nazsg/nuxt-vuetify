@@ -1,5 +1,6 @@
 <template>
   <div class="orderNos">
+    <h5>Open Bills</h5>
     <template v-for="(menu, index) in orders">
       <button @click="setOrder(menu.id)" :key="index" class="selected" v-if="menu.id == selected" >{{menu.id}}</button>
       <button @click="setOrder(menu.id)" :key="index" class="others" v-else>{{menu.id}}</button>
