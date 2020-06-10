@@ -59,6 +59,7 @@ html {
       transition: 0.3s;
       input {
         // border-bottom: 1px dotted #999;
+        transition: 0.3s;
         padding: 10px;
         outline: none;
         background-color: #f3f1f1b4;
@@ -109,10 +110,13 @@ html {
         text-align: left;
         background-color: #ccc9c9a2;
         border: 2px dashed rgb(241, 241, 241);
-        transform: rotate(2deg);
+        transform: rotate(1deg);
         overflow: auto;
         div {
           width: 100%;
+        }
+        font {
+          font-weight: bold;
         }
       }
       @media (max-width: 500px) {
