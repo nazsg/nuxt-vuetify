@@ -1,8 +1,8 @@
 <template>
-  <div class="restaurant">
+  <div class="restaurant" >
     <h1>Order-Taking Web App</h1>
     <div>
-      <cart :selected="selectedOrder" :total="total" :count="count" />
+      <cart :selected="selectedOrder" :total="total" :count="count" closeModal="closeModal" />
       <orders :selected="selectedOrder" :orders="orderIDs" v-on:setOrder="selectedOrder = arguments[0]" />
       <menus v-if="selectedOrder != ''" />
     </div>
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       orderIDs: [],
-      selectedOrder: '',      
+      selectedOrder: '',
     }
   },
   components: { menus, orders, cart },

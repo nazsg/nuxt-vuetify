@@ -2,7 +2,7 @@
   <div class="qty-in-cart">
     <template v-for="(q, index) in qty">
       <div :key="index" v-if="q.slice(0, q.indexOf('--')) == menu.id">
-      <cart title="Quantity in cart" /> 
+      <cart class="currentQty" title="Quantity in cart" /> 
         {{
         q.substr(q.indexOf("--"), 10).replace("--", "")
         }}

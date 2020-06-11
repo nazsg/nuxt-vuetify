@@ -1,5 +1,5 @@
 <template>
-  <div class="cartSummary">
+  <div class="cartSummary" >
     <div>
       <receipt /> Order no: {{selected}}
     </div>
@@ -8,16 +8,16 @@
       {{$store.getters['restaurant/get_total']}}
     </div>
     <div  >
-        <cartIcon title="Show cart contents" @click="show = !show" class="cart-details"/>  
+        <cartIcon title="Show cart contents" @click="show = true" class="cartHeader"/>  
         <span>
           {{$store.getters['restaurant/get_count']}}
         </span>
     </div>
 
     <div v-if="show">
-      <div class="modalBg">
+      <div class="modalBg" @click.self="show = false">
         <div class="modalContent">
-          <button @click="show = false">X</button>
+          <closeIcon @click="show = false" class="rightTop" />
           <cartDetails />
         </div>
       </div>
@@ -27,12 +27,13 @@
 </template>
 
 <script>
+import closeIcon from 'vue-material-design-icons/CloseCircle.vue'
 import cartDetails from './cart-details'
 import cartIcon from 'vue-material-design-icons/Cart.vue'
 import receipt from 'vue-material-design-icons/Receipt.vue'
 import sigma from 'vue-material-design-icons/Sigma.vue'
 export default {
-  components: { cartIcon, receipt, sigma, cartDetails },
+  components: { cartIcon, receipt, sigma, cartDetails, closeIcon },
   data() {
     return {
       show: false
@@ -44,9 +45,7 @@ export default {
 
 <style lang="scss" >
 @import '~/assets/style/_common';
-.cart-details {
-  cursor: pointer;
-}
+
 .modalBg {
   @include modalBg;
 

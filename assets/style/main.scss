@@ -1,6 +1,30 @@
 @import "../../../mixins/common";
 $mainColor: rgb(9, 202, 209);
 
+.material-design-icon.currentQty {
+  // cursor: crosshair;
+  &:hover {
+    color: inherit;
+  }
+}
+.material-design-icon {
+  &:hover {
+    color: rgb(252, 79, 79);
+  }
+}
+.material-design-icon.cart {
+  color: blue;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.material-design-icon.cartHeader {
+  cursor: pointer;
+  &:hover {
+    color: inherit;
+  }
+}
+
 .showcase {
   .robot li.name label {
     // color: $mainColor;
@@ -49,6 +73,12 @@ $mainColor: rgb(9, 202, 209);
       // height: 35px;
       // line-height: 30px;
     }
+    .rightTop {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      cursor: pointer;
+    }
   }
   button {
     border: 1px solid #999;
@@ -92,9 +122,34 @@ $mainColor: rgb(9, 202, 209);
     }
   }
   .cart-details {
+    .material-design-icon {
+      cursor: pointer;
+    }
+    ul {
+      padding: 0;
+    }
+    padding: 20px;
+    h4 {
+      padding-bottom: 10px;
+    }
+    li {
+      border: 1px solid #999;
+    }
+    .item {
+    }
+    span.qty {
+      float: right;
+    }
     .total {
       display: flex;
       justify-content: center;
+    }
+    .price {
+      text-align: right;
+      font-family: Courier;
+    }
+    .priceHeader {
+      text-align: right;
     }
   }
   ul.table {

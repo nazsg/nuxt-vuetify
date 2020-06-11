@@ -8,7 +8,7 @@
         <span class="item">{{ menu.item.slice(0, 40) }}</span>
         <span class="price">{{ menu.price }}</span>
         <div class="add">
-          <cartPlus title="Add to cart" @click="add_to_cart([menu.id, menu.price, menu.item.slice(0, 40), 1])" />
+          <cartPlus class="cart" title="Add to cart" @click="add_to_cart([menu.id, menu.price, menu.item.slice(0, 40), 1])" />
         </div>        
         <itemQty :qty="qty" :menu="menu" />
       </li>

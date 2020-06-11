@@ -6,23 +6,29 @@
       <ul class="header">
         <li class="item">Item</li>
          <li>Quantity</li> 
-         <li>Price</li>
-         <li>Sub-total</li>
+         <li class="priceHeader">Price</li>
+         <li class="priceHeader">Sub-total</li>
       </ul>
       <ul v-for="(cart, index) in cart_details" :key="index">
         <li class="item">{{ cart.item }}</li> 
-        <li>{{ cart.qty }} </li>
-        <li>
-          <cartPlus title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), 1])" /> 
+        <li> 
+          <cartPlus class="cart" title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), 1])" /> 
           <cartMinus title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), -1])" />
-          </li>
-        <li>{{ cart.price }}</li>
-        <li>{{ (cart.price * cart.qty).toFixed(2) }}</li>
+          <span class="qty">{{ cart.qty }}</span>
+          </li>        
+        <li class="price">{{ cart.price }}</li>
+        <li class="price"> {{ (cart.price * cart.qty).toFixed(2) }}</li>
       </ul>
-      <hr />
+      
       <ul class="total">
-        <li>{{$store.getters['restaurant/get_count']}}</li>
-        <li>{{$store.getters['restaurant/get_total']}}</li>
+        <li class="item">.</li>
+        <li>
+          <span class="qty">
+            {{$store.getters['restaurant/get_count']}}            
+          </span>
+          </li>
+        <li>.</li>
+        <li class="price">{{$store.getters['restaurant/get_total']}}</li>
       </ul>
     </div>
   </div>
