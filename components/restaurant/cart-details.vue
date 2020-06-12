@@ -12,8 +12,8 @@
       <ul v-for="(cart, index) in cart_details" :key="index">
         <li class="item">{{ cart.item }}</li> 
         <li> 
-          <cartPlus class="cart" title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), 1])" /> 
-          <cartMinus title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), -1])" />
+          <cartPlus class="cartPlus" title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), 1])" /> 
+          <cartMinus class="cartMinus" title="Add to cart" @click="add_to_cart([cart.id, cart.price, cart.item.slice(0, 40), -1])" />
           <span class="qty">{{ cart.qty }}</span>
           </li>        
         <li class="price">{{ cart.price }}</li>

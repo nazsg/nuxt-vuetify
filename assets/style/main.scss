@@ -4,25 +4,20 @@ $mainColor: rgb(9, 202, 209);
 .material-design-icon.currentQty {
   // cursor: crosshair;
   &:hover {
-    color: inherit;
+    // color: inherit;
   }
 }
 .material-design-icon {
-  &:hover {
-    color: rgb(252, 79, 79);
-  }
+  @include iconDisplay;
 }
-.material-design-icon.cart {
-  color: blue;
-  &:hover {
-    cursor: pointer;
-  }
+.material-design-icon.cartPlus {
+  @include iconButton($colour1:rgb(70, 70, 247));
+}
+.material-design-icon.cartMinus {
+  @include iconButton($colour1:#f74c4c);
 }
 .material-design-icon.cartHeader {
-  cursor: pointer;
-  &:hover {
-    color: inherit;
-  }
+  @include iconButton;
 }
 
 .showcase {

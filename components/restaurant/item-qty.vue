@@ -2,12 +2,12 @@
   <div class="qty-in-cart">
     <template v-for="(q, index) in qty">
       <div :key="index" v-if="q.slice(0, q.indexOf('--')) == menu.id">
-      <cart class="currentQty" title="Quantity in cart" /> 
+      <cart title="Quantity in cart" /> 
         {{
         q.substr(q.indexOf("--"), 10).replace("--", "")
         }}
         <div class="minus">
-          <cartMinus title="Remove 1 from cart" @click="add_to_cart([menu.id, menu.price, menu.item.slice(0, 40), -1])"
+          <cartMinus class="cartMinus" title="Remove 1 from cart" @click="add_to_cart([menu.id, menu.price, menu.item.slice(0, 40), -1])"
           v-if="q.substr(q.indexOf('--'), 10).replace('--', '') > 0"
         />
         </div>
