@@ -1,24 +1,34 @@
 <template>
-  <div class="home" @click.self="cross = false;keyword = ''">
-    <div class="banner" :class="{dimBanner: cross}">
-      <h3>Front-end web dev</h3>
-      <h4>flavoured with bespoke APIs</h4>
-    </div>
-    <div class="search" :class="{newPos:cross}">
-      <input @keydown="validate(event)" type="text" v-model="keyword" @click="cross =true" placeholder="find scratch pad" />
-      <cross v-if="cross" class="cross" @click="keyword = '';cross = false" />
-    </div>
-    <div class="results" v-if="keyword != '' ">
-      <p v-for="(data, index) in filteredTips" :key="index" v-html="data"></p>
-    </div>
-    <div class="emptyResults" v-if="filteredTips.length == 0">None found</div>
-  </div>
+  <div class="home">
+  <!-- <div class="home" @click.self="cross = false;keyword = ''"> -->
+  
+  <!-- <button class="" @click="component = 'indexSearch'">Search</button>
+  <button class="" @click="component = 'videoBg'">Video</button> -->
+  <!-- <component v-bind:is="component"></component> -->
+
+  <indexSearch :close="close" @click.native="close = true"/>
+  <!-- <cookies /> -->
+  <!-- <indexOld /> -->
+  <!-- <v-date-picker v-model="picker"></v-date-picker> -->
+</div>
 </template>
 
 <script>
+import cookies from '~/components/cookies'
+import videoBg from '~/components/video'
+import indexOld from '~/components/index-old'
+import indexSearch from '~/components/index-search'
 import cross from "vue-material-design-icons/Close.vue";
 export default {
-  components: { cross },
+  components: { cross, indexSearch, indexOld, videoBg, cookies },
+    head: {
+    title: 'NazsNet | Front-end web dev',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'Resources and Such...' }
+    ]
+  },
   data() {
     return {
       tips: ["test"],
@@ -26,7 +36,10 @@ export default {
       result: false,
       focus: false,
       hide: false,
-      cross: false
+      cross: false,
+      component: '',
+      close: false,
+      picker: new Date().toISOString().substr(0, 10),
     };
   },
   methods: {
@@ -43,12 +56,19 @@ export default {
       let k = event.keyCode
       if(k == 106 || k == 107) event.preventDefault()
       // alert(k)
+    }, 
+    test() {
+      // alert('ok')
+      console.log('click from home')
+      this.close = true
+      console.log(this.close)
+      this.$store.commit('set_show_home', true)
     }
   },
   created() {
-    this.$axios
-      .get("journal/show.php?showAll&orderBy=desc")
-      .then(data => (this.tips = data.data.map(d => d.comment)));
+    // this.$axios
+    //   .get("journal/show.php?showAll&orderBy=desc")
+    //   .then(data => (this.tips = data.data.map(d => d.comment)));
   },
   computed: {
     filteredTips() {
@@ -56,9 +76,6 @@ export default {
         return tip.toLowerCase().match(this.keyword.toLowerCase());
       });
     },
-    video() {
-      return !this.hide && this.filteredTips.length == this.tips.length;
-    }
   }
 };
 </script>

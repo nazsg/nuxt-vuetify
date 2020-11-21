@@ -57,8 +57,8 @@ export default {
     }
   },
   created() {
-    this.$axios.get('journal/show.php?showAll&orderBy=desc')
-      .then(data => this.tips = data.data.map(d => d.comment))
+    // this.$axios.get('journal/show.php?showAll&orderBy=desc')
+    //   .then(data => this.tips = data.data.map(d => d.comment))
   },
   computed: {
     bus() {

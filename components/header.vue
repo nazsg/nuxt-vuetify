@@ -10,8 +10,9 @@
         <ul >
           <li @click="hide"><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
           <li  @click="hide"><nuxt-link to="/naz2">Naz2</nuxt-link></li>
-          <li  @click="hide"><nuxt-link to="/restaurant">Res Sample</nuxt-link></li>
-          <li><a href="#">Holiday</a></li>
+          <li  @click="hide"><nuxt-link to="/restaurant">Restaurant Sample</nuxt-link></li>
+          <li><a href="https://nazs.net/holiday">Holiday Proto</a></li>
+          <li  @click="hide"><nuxt-link to="/journal">Journal</nuxt-link></li>
         </ul>
       </li>
     </ul>
@@ -56,7 +57,6 @@ $a-border: #b386ee;
 
 .nav-area {
   font-family: Arial, Helvetica, sans-serif;
-
   ul {
     background-color: $col1;
     list-style: none;

@@ -3,6 +3,7 @@
     <div class="content">
       <appHeader />
       <nuxt />
+    <cookies />
     </div>
     <appFooter />
   </div>
@@ -12,7 +13,9 @@
 @import "../../sass-mixins/_styles";
 $color: #4f0a58;
 $color2: #b345c2;
-
+* {
+  box-sizing: border-box;
+}
 html {
   overflow: auto;
 }
@@ -26,17 +29,34 @@ html {
   font-family: Helvetica;
 
   .home {
+    button {
+      color: white;
+    }
+
+  .v-picker {
+
+    &.theme--light.v-card {
+      background-color: #5785ac;
+    }
+    .v-btn {
+      color: #999;
+    }
+    .v-btn.v-btn--active {
+      color: #3c4042;
+      background-color: #9cb9d1;
+    }
+  }
     @include fullPage;
     background-image: url("/wallpaper.jpg");
     justify-content: flex-start;
     height: 100%;
     .dimBanner {
-      // position: absolute;
+      // position: relative;
       // z-index: -9;
       h3,
       h4 {
-        color: #690e0e3a;
-        transition: 0.3s;
+        color: #690e0e00;
+        transition: 1s;
       }
     }
     .banner {
@@ -47,7 +67,7 @@ html {
       letter-spacing: 3px;
       h3,
       h4 {
-        transition: 0.3s;
+        transition: 1s;
       }
       h4 {
         font-family: "Stardos Stencil", cursive;
@@ -57,6 +77,8 @@ html {
     .search {
       margin: 20px auto;
       transition: 0.3s;
+      // z-index: 109;
+      position: relative;
       input {
         // border-bottom: 1px dotted #999;
         transition: 0.3s;
@@ -65,7 +87,7 @@ html {
         background-color: #f3f1f1b4;
         letter-spacing: 2px;
         border-radius: 5px;
-        width: 200px;
+        width: 400px;
         &:focus {
           background: #fff;
         }
@@ -73,7 +95,7 @@ html {
     }
     .newPos {
       width: 400px;
-      margin: 0 auto;
+      margin: 0 auto 10px;
       margin-top: -120px;
       transition: 0.3s;
       @media (max-width: 500px) {
@@ -110,7 +132,7 @@ html {
         text-align: left;
         background-color: #ccc9c9a2;
         border: 2px dashed rgb(241, 241, 241);
-        transform: rotate(1deg);
+        // transform: rotate(1deg);
         overflow: auto;
         div {
           width: 100%;
@@ -125,4 +147,6 @@ html {
     }
   }
 }
+
+
 </style>

@@ -3,6 +3,7 @@ export const state = () => ({
   starters: [],
   soups: [],
   all_main_menus: [],
+  show_home: false
 })
 
 export const getters = {
@@ -11,6 +12,9 @@ export const getters = {
   },
   getStarters: (state) => {
     return state.starters
+  },
+  getShowHome: state => {
+    return state.show_home
   }
 }
 
@@ -23,6 +27,9 @@ export const mutations = {
   },
   set_all_main_menus(state, arg) {
     // state.all_main_menus = arg
+  },
+  set_show_home(state) {
+    state.show_home = true
   }
 }
 

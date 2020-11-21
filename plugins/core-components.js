@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 import appHeader from '@/components/header'
 import appFooter from '@/components/footer'
+import cookies from '@/components/cookies'
 import appBooking from '@/components/booking'
 
 import ArrowRightBoxIcon from 'vue-material-design-icons/ArrowRightBox.vue';
@@ -12,6 +13,7 @@ import RefreshIcon from 'vue-material-design-icons/Refresh.vue';
 
 Vue.component('appHeader', appHeader)
 Vue.component('appFooter', appFooter)
+Vue.component('cookies', cookies)
 Vue.component('appBooking', appBooking)
 
 Vue.component('ArrowRight', ArrowRightBoxIcon)

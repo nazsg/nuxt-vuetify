@@ -1,4 +1,5 @@
 @import "../../../mixins/common";
+@import "../../../mixins/base";
 $mainColor: rgb(9, 202, 209);
 
 .material-design-icon.currentQty {
@@ -26,15 +27,16 @@ $mainColor: rgb(9, 202, 209);
   }
   .noshow,
   .video-container {
-    display: none;
+    // display: none;
+    // width: 200px;
   }
   .video {
     background-color: #fff;
-    width: 600px;
+    width: 200px;
     margin: 0 auto;
     video {
-      width: 90%;
-      height: 100%;
+      // width: 50%;
+      // height: 50%;
     }
   }
   .results {
@@ -64,15 +66,12 @@ $mainColor: rgb(9, 202, 209);
     width: 70%;
     margin: 15px auto;
     // @include border1;
-    div {
-      // height: 35px;
-      // line-height: 30px;
-    }
-    .rightTop {
+
+    .close {
+      @include iconButton;
       position: absolute;
       right: 10px;
       top: 10px;
-      cursor: pointer;
     }
   }
   button {

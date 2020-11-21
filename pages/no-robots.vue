@@ -10,22 +10,38 @@
             <label for="message">Message</label>
             <textarea name="" id="" cols="30" rows="10" placeholder="Your message" v-model="visitor.message" ></textarea>
           </li>
+
           <template v-if="pin.length > 0">
-            <li style="font-style:italic">
-              Click on the numbers to enable form 
-            </li>
             <li class=" choice">
-              <template v-for="(no, index) in choice">
+              <template v-for="(no, index) in choice2">
                 <i v-if="pin.includes(no.d)" :key="index" 
                   v-html="no.n" 
-                  class="pin" @click="checkPin(no.d)"                
+                  class="others" @click="checkPin(no.d)"                
                 ></i>
                 <!-- <i v-else :key="index" class="others">&#10004;</i> -->
               </template>
             </li>
           </template>
+        </ul>
+        <ul>
+          <template v-if="pin.length > 0">
+            <li style="font-style:italic">
+              Click on the numbers below that appear above 
+            </li>
+            <li class=" choice">
+              <template v-for="(no, index) in choice">
+                <i :key="index" v-html="no.n" class="pin" @click="checkPin(no.d)"></i>
+                <!-- <i v-if="pin.includes(no.d)" :key="index" 
+                  v-html="no.n" 
+                  class="pin" @click="checkPin(no.d)"                
+                ></i>
+                <i v-else :key="index" class="others">&#10004;</i> -->
+              </template>
+            </li>
+          </template>
           <li class=" action">
-            <button @click.prevent="resetForm">Clear</button>
+            <button @click.prevent="callPin">Reload</button> 
+            <!-- <button @click.prevent="resetForm">Clear</button> -->
             <button @click.prevent="submit" class="submit" :class="{allowForm}">Submit</button>
           </li>
         </ul>
@@ -36,6 +52,15 @@
 <script>
 import norobots from '~/functions/norobots'
 export default {
+    head: {
+    title: 'No Robots',
+    meta: [
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: 'No robots - human detection' }
+    ]
+  },
+  // middleware: ['mw1'],
   data() {
     return {
       pin: [], choice: norobots.choice,
@@ -44,11 +69,14 @@ export default {
       },
       allowForm: true,
       guessPin: [],
-      pin2: []
+      pin2: [],
+      choice2: norobots.choice2
     }
   },  
   created() {
     this.callPin()
+    // this.shuffleChoice(this.choice)
+    // this.shuffleChoice(this.choice2)
   },
 
   methods: {
@@ -68,6 +96,9 @@ export default {
         this.guessPin = []
         this.result = ''
         this.allowForm = false    
+        // this.shuffleChoice(this.choice)
+        this.choice = norobots.choice
+        this.shuffleChoice(this.choice2)
       })     
     },
     genPin() {
@@ -84,14 +115,22 @@ export default {
       all.push(n4)
       this.pin = all.filter( (val, index, self) => self.indexOf(val) === index )
       // console.log(all)
+      this.choice = norobots.choice
     },
     checkPin(no) {
       this.pin = this.pin.filter(p => p !== no) // remove clicked no from the Pin array
       if(this.pin.length == 0) this.allowForm = true
+      // this.shuffleChoice(this.choice)
     },
     submit() {
 
+    },
+    shuffleChoice(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
     }
+}    
   }
 }
 </script>
@@ -128,7 +167,7 @@ form.robot {
   li {
     @include border1;
     display: flex;
-    margin: 10px 0px;
+    margin: 5px 0px;
     // flex-direction: column;
     justify-content: space-around;
     label {
@@ -141,6 +180,10 @@ form.robot {
       padding: 10px;
       width: 100%;
     }     
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+      /* IE10+ CSS styles go here */
+      padding: 10px 0 5px;
+    }    
   }
   li.name, li.message {
     // width: 500px;
@@ -177,12 +220,14 @@ form.robot {
     }
     button.submit {
       color: rgb(219, 218, 218);
-      background-color: #a09c9c;
+      background-color: #d82121;
+      text-decoration: line-through;
       cursor: none; 
       cursor: not-allowed;
     }
     button.allowForm {
       background-color: #fff;
+      text-decoration: none;
       color: inherit;
       cursor: pointer;
       &:hover {
@@ -192,12 +237,16 @@ form.robot {
   }
   .choice {
     display: inline-block;
-    font-size: 40px;
+    font-size: 3em;
     display: flex;
     flex-direction: row;
     justify-content: center;
     user-select: none;
-      flex-wrap: wrap;
+    flex-wrap: wrap;
+    @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     /* IE10+ CSS styles go here */
+     font-size: 2em;
+    }
     i.pin {
       color: green;
       cursor: pointer;

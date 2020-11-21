@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="cart-details">
-      <h4>Cart Details</h4>
+      <h4>Details of Order {{$store.getters['restaurant/get_current_order']}}</h4>
 
       <ul class="header">
         <li class="item">Item</li>
@@ -21,13 +21,13 @@
       </ul>
       
       <ul class="total">
-        <li class="item">.</li>
+        <li class="item"></li>
         <li>
           <span class="qty">
             {{$store.getters['restaurant/get_count']}}            
           </span>
           </li>
-        <li>.</li>
+        <li></li>
         <li class="price">{{$store.getters['restaurant/get_total']}}</li>
       </ul>
     </div>
@@ -59,20 +59,20 @@ export default {
         return cart
       } 
     },
-    total() {      
-      if(this.current_order) {
-        let total = this.cart_details.map(item => item.price * item.qty)
-          .reduce( (sum,num) => (sum + num), 0).toFixed(2)
-        return total
-      }      
-    },
-    cart_count() {
-      if(this.current_order) {
-        let count = this.cart_details.map(item => item.qty)
-          .reduce( (sum, num) => (sum + num), 0)
-        return count
-      }
-    }
+    // total() {      
+    //   if(this.current_order) {
+    //     let total = this.cart_details.map(item => item.price * item.qty)
+    //       .reduce( (sum,num) => (sum + num), 0).toFixed(2)
+    //     return total
+    //   }      
+    // },
+    // cart_count() {
+    //   if(this.current_order) {
+    //     let count = this.cart_details.map(item => item.qty)
+    //       .reduce( (sum, num) => (sum + num), 0)
+    //     return count
+    //   }
+    // }
   }
 };
 </script>
