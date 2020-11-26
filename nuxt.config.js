@@ -1,7 +1,7 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
-  mode: 'universal',
+  // mode: 'universal',
   /*
   ** Headers of the page
   */
@@ -40,6 +40,7 @@ export default {
     // '~plugins/iview',
     // '~store/index'
   ],
+  components: true,
   router : {
     // middleware: []
   },

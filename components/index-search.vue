@@ -8,7 +8,7 @@
       <input @keydown="validate" type="text" v-model="keyword" @click="cross =true" placeholder="find resource... eg css, ssl, ubuntu, etc" />
       <cross title="Cancel and return" v-if="cross" class="cross" @click="keyword = '';cross = false" />
     </div>
-
+    <auto-import />
     <div class="results" v-if="keyword != '' ">
       <p v-for="(data, index) in filteredTips" :key="index" v-html="data"></p>
     </div>

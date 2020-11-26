@@ -5,20 +5,17 @@
       <!-- :total="total" :count="count"  
       closeModal="closeModal" 
       -->
-      <cart :selected="selectedOrder" 
+      <cart-summary :selected="selectedOrder" 
       />
 
-      <orders :selected="selectedOrder" :orders="orderIDs" v-on:setOrder='selectedOrder = arguments[0]' />
-      <menus v-if="selectedOrder != ''" />
+      <show-orders :selected="selectedOrder" :orders="orderIDs" v-on:setOrder='selectedOrder = arguments[0]' />
+      <show-menus v-if="selectedOrder != ''" />
     </div>
     <br/>
   </div>
 </template>
 
 <script>
-import cart from '~/components/restaurant/cartSummary'
-import orders from '~/components/restaurant/showOrders'
-import menus from '~/components/restaurant/showMenus'
 export default {
     head: {
     title: 'Restaurant sample',
@@ -34,7 +31,6 @@ export default {
       selectedOrder: '',
     }
   },
-  components: { menus, orders, cart },
   methods: {
     send() {
       this.$store.commit('restaurant/set_orders', 'testing commit')

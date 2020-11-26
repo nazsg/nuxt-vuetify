@@ -18,7 +18,7 @@
       <div class="modalBg" @click.self="show = false">
         <div class="modalContent" >
           <closeIcon @click="show = false" class="close" />
-          <cartDetails />
+          <cart-details />
         </div>
       </div>
     </div>
@@ -27,13 +27,12 @@
 </template>
 
 <script>
-import cartDetails from './cart-details'
 import closeIcon from 'vue-material-design-icons/CloseCircle.vue'
 import cartIcon from 'vue-material-design-icons/Cart.vue'
 import receipt from 'vue-material-design-icons/Receipt.vue'
 import sigma from 'vue-material-design-icons/Sigma.vue'
 export default {
-  components: { cartIcon, receipt, sigma, cartDetails, closeIcon },
+  components: { cartIcon, receipt, sigma, closeIcon },
   data() {
     return {
       show: false

@@ -6,7 +6,7 @@
   <button class="" @click="component = 'videoBg'">Video</button> -->
   <!-- <component v-bind:is="component"></component> -->
 
-  <indexSearch :close="close" @click.native="close = true"/>
+  <index-search :close="close" @click.native="close = true"/>
   <!-- <cookies /> -->
   <!-- <indexOld /> -->
   <!-- <v-date-picker v-model="picker"></v-date-picker> -->
@@ -17,10 +17,9 @@
 import cookies from '~/components/cookies'
 import videoBg from '~/components/video'
 import indexOld from '~/components/index-old'
-import indexSearch from '~/components/index-search'
 import cross from "vue-material-design-icons/Close.vue";
 export default {
-  components: { cross, indexSearch, indexOld, videoBg, cookies },
+  components: { cross, indexOld, videoBg, cookies },
     head: {
     title: 'NazsNet | Front-end web dev',
     meta: [

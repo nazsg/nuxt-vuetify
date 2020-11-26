@@ -2,15 +2,12 @@
   <div class="menus">        
     <categories v-on:relay="category = arguments[0]"    
       :category="category" :menus="menuCategories" />
-    <helperTable :menus="menus" :category="category" />
+    <helper-table :menus="menus" :category="category" />
   </div>
 </template>
 
 <script>
-import categories from '~/components/restaurant/categories'
-import helperTable from '~/components/restaurant/table'
 export default {
-  components: { helperTable, categories },
   data() {
     return {
       menus: [], 
