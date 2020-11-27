@@ -30,8 +30,9 @@ export default {
 dialog {
   position: fixed;
   top: 30vh;
-  width: 30rem;
-  left: calc(50% - 15rem);
+  width: 50rem;
+  width: 90%;
+  left: calc(50% - 45%);
   margin: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 12px;

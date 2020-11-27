@@ -8,7 +8,7 @@
       {{$store.getters['restaurant/get_total']}}
     </div>
     <div  >
-        <cartIcon title="Show cart contents" @click="show = true" class="cartHeader"/>  
+        <!-- <cartIcon title="Show cart contents" @click="show = true" class="cartHeader"/>   -->
         <cartIcon title="Show cart contents" @click="dialogIsVisible = true" class="cartHeader"/>  
         <span>
           {{$store.getters['restaurant/get_count']}} 
