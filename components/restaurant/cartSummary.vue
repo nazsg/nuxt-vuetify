@@ -9,10 +9,16 @@
     </div>
     <div  >
         <cartIcon title="Show cart contents" @click="show = true" class="cartHeader"/>  
+        <cartIcon title="Show cart contents" @click="dialogIsVisible = true" class="cartHeader"/>  
         <span>
-          {{$store.getters['restaurant/get_count']}}
+          {{$store.getters['restaurant/get_count']}} 
         </span>
     </div>
+
+    <base-modal @close="hideDialog" :open="dialogIsVisible">
+      <cart-details />
+      <button @click="hideDialog">Close it!</button>
+    </base-modal>
 
     <div v-if="show">
       <div class="modalBg" @click.self="show = false">
@@ -35,10 +41,16 @@ export default {
   components: { cartIcon, receipt, sigma, closeIcon },
   data() {
     return {
-      show: false
+      show: false,
+      dialogIsVisible: false
     }
   },
   props: [ 'selected'],
+  methods:  {
+    hideDialog() {
+      this.dialogIsVisible = false
+    }
+  }
 }
 </script>
 
