@@ -16,8 +16,8 @@
               <template v-for="(no, index) in choice2">
                 <i v-if="pin.includes(no.d)" :key="index" 
                   v-html="no.n" 
-                  class="others" @click="checkPin(no.d)"                
-                ></i>
+                  class="others">
+                </i>
                 <!-- <i v-else :key="index" class="others">&#10004;</i> -->
               </template>
             </li>
