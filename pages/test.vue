@@ -1,11 +1,16 @@
 <template>
   <div>
-		<section class="journal">
+		<!-- <section class="journal">
 			<input type="text" v-model="search" placeholder="find journal">
-		</section>
-		<div class="results" v-for="(d, index) in tips2" :key="index" v-html="d">
-		</div>
-
+		</section> -->
+		<!-- <div class="results" v-for="(d, index) in tips2" :key="index" v-html="d">
+		</div> -->
+		<!-- <journal /> -->
+		<button @click="dialogIsVisible = true">dialog</button>
+    <base-modal @close="hideDialog" :open="dialogIsVisible">
+      <journal />
+      <button @click="hideDialog">Close it!</button>
+    </base-modal>
 	</div>
 </template>
 
@@ -13,12 +18,18 @@
 export default {
   data() {
 		return {
-			tips: [], search: ''
+			tips: [], search: '',
+			dialogIsVisible: false
+		}
+	},
+	methods: {
+		hideDialog() {
+			this.dialogIsVisible = false
 		}
 	},
 	created() {
-		this.$axios.get('journal/show.php?showAll&orderBy=desc')
-			.then(data => this.tips = data.data.map(d => d.comment))
+		// this.$axios.get('journal/show.php?showAll&orderBy=desc')
+		// 	.then(data => this.tips = data.data.map(d => d.comment))
 	},
 	computed: {
 		tips2() {

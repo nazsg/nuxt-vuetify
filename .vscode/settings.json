@@ -1,4 +1,6 @@
 {
-  "workbench.colorTheme": "One Dark Pro",
-  "editor.acceptSuggestionOnEnter": "off"
+  "editor.acceptSuggestionOnEnter": "off",
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredDarkColorTheme": "One Dark Pro",
+  "workbench.colorTheme": "Visual Studio Dark"
 }

@@ -147,6 +147,8 @@ html {
     }
   }
 }
-
+ #wys {
+   @import './journal';
+ }
 
 </style>

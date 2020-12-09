@@ -29,7 +29,7 @@ export default {
 
 dialog {
   position: fixed;
-  top: 30vh;
+  top: 10vh;
   width: 50rem;
   width: 90%;
   left: calc(50% - 45%);

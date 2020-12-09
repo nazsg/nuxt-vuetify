@@ -1,0 +1,270 @@
+form {
+  .formatting {
+    .selects {
+      display: inline-block;
+      position: absolute;
+      margin-top: 15px;
+      margin-left: 10px;
+    }
+    select {
+      border: 1px solid #999;
+      padding: 0px 10px;
+      background-color: #ddd;
+    }
+    button {
+      padding: 0;
+      margin-top: 15px;
+      color: #000;
+      font-size: 1em;
+    }
+    i:hover {
+      cursor: pointer;
+    }
+    width: 90%;
+    margin: 10px auto;
+  } // formatting
+
+  border: 1px solid #333;
+  margin-bottom: 10px;
+  .field {
+    display: block;
+    margin: 5px 0;
+    label {
+      width: 100px;
+      outline: 0px solid;
+      vertical-align: top;
+      text-align: right;
+      padding-right: 10px;
+    }
+    input,
+    textarea {
+      // float: right;
+      border: 1px solid #999;
+      border-radius: 5px;
+      padding: 7px;
+      &:focus {
+        border-color: #666;
+        background-color: #ddd;
+      }
+    }
+
+
+  }
+  .actions {
+      display: flex;
+      justify-content: center;
+  }
+  iframe {
+    display: block;
+    border: 1px #ccc solid;
+    // width: 90%;
+    // margin: 0 auto;
+    // border-radius: 7px;
+  }
+} // form
+
+
+button,
+input {
+//   outline: none;
+  font-size: 1rem;
+}
+.hide {
+  cursor: not-allowed;
+  color: grey;
+}
+
+.hue {
+  width: 50%;
+  margin: 0 auto;
+  background-image: linear-gradient(
+    to right,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
+  border-radius: 3px;
+  border-style: solid;
+  border-width: thin;
+  input {
+    width: 100%;
+    padding: 0;
+  }
+}
+.myFrame {
+  @media only screen and (min-width: 700px) {
+    max-width: 700px;
+    height: 500px;
+  }
+  border: 1px solid #999;
+  background-color: #ddd;
+  width: 100%;
+  margin: 5px auto;
+  height: 350px;
+}
+@media only screen and (max-width: 550px) {
+  table#journal {
+    width: 100%;
+  }
+}
+table#journal {
+  max-width: 700px;
+  margin: 10px auto;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  tr {
+    // padding: 30px 0;
+    vertical-align: top;
+    height: 30px;
+    td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      // min-width: 100px;
+      &:nth-child(1) {
+        width: 100px;
+        // color: red;
+      }
+    }
+  }
+}
+#edit {
+  display: none;
+}
+.editor#edit {
+  iframe {
+    height: 300px;
+    margin: 5px auto;
+  }
+  display: block;
+  position: fixed;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  top: 20%;
+  height: 70%;
+  width: 90%;
+  //   max-width: 400px;
+  left: 50%;
+  padding: 20px;
+  border-radius: 5px;
+
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+  z-index: 102;
+}
+textarea {
+  width: 100%;
+}
+
+button {
+  border: 1px solid rgb(116, 114, 114);
+  padding: 3px;
+  border-radius: 3px;
+  outline: none;
+  background-color: rgb(235, 231, 231);
+  &:hover {
+    background-color: rgb(204, 204, 204);
+  }
+}
+.input {
+  @media only screen and (min-width: 700px) {
+    width: 700px;
+  }
+  display: flex;
+  justify-content: space-between;
+  // width: 100%;
+  margin: 0 auto;
+  // outline: 1px solid;
+  i {
+    cursor: pointer;
+  }
+}
+@media only screen and (min-width: 800px) {
+  form {
+    max-width: 800px;
+    margin: 10px auto;
+  }
+}
+
+.journal {
+  @media only screen and (min-width: 700px) {
+    width: 700px;
+  }
+  i {
+    cursor: pointer;
+    color: rgb(85, 84, 84);
+    &:hover {
+      color: #000;
+    }
+  }
+  margin: 3px auto;
+  // border: 1px solid #ddd;
+  display: flex;
+  background-color: rgb(241, 241, 241);
+  justify-content: space-around;
+  // align-items: flex-start;
+  padding: 10px;
+  &:nth-child(odd) {
+    background-color: rgb(238, 236, 236);
+  }
+}
+
+.cssHide {
+  // display: none;
+}
+
+.arial {
+  font-family: Arial;
+}
+.courier {
+  font-family: Courier;
+}
+.georgia {
+  font-family: Georgia;
+}
+.helvetica {
+  font-family: Helvetica;
+}
+.impact {
+  font-family: Impact;
+}
+.tahoma {
+  font-family: Tahoma;
+}
+.verdana {
+  font-family: Verdana;
+}
+.times {
+  font-family: "Times New Roman";
+}
+.fonts {
+  font-size: 16px;
+}
+.selects {
+  display: block;
+}
+.two {
+  font-size: 12p2;
+}
+.three {
+  font-size: 14px;
+}
+.four {
+  font-size: 16px;
+}
+.five {
+  font-size: 18px;
+}
+.six {
+  font-size: 20px;
+}
+.seven {
+  font-size: 22px;
+}
+select {
+  outline: none;
+}
