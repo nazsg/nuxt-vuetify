@@ -9,7 +9,7 @@
       </a>
         <ul >
           <li @click="hide"><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
-          <li  @click="hide"><nuxt-link to="/naz2">Naz2</nuxt-link></li>
+          <li  @click="hide"><nuxt-link to="/menus">Naz2</nuxt-link></li>
           <li  @click="hide"><nuxt-link to="/test">test</nuxt-link></li>
           <li  @click="hide"><nuxt-link to="/restaurant">Restaurant Sample</nuxt-link></li>
           <li><a href="https://nazs.net/holiday">Holiday Proto</a></li>

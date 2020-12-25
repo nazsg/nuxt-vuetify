@@ -17,7 +17,9 @@
         Logged In successfully
       </h2>
       <button @click.prevent="show">show</button>
-      <p>{{ posts }}</p>
+      <p v-for="(post, i) in posts" :key="i">
+        {{ post.item }} <button>Edit</button>
+      </p>
     </div>
 </div>
 </template>
@@ -48,7 +50,8 @@ export default {
   methods: {
     async show() {
       // await this.$axios.get('http://localhost:4000/api/posts')
-      await this.$axios.get('http://localhost:3000/api/menus', { headers: {token: localStorage.getItem('token')} })
+      await this.$axios.get('https://in-kent.uk/api/menus', { headers: {token: localStorage.getItem('token')} })
+      // await this.$axios.get('http://localhost:3000/api/menus', { headers: {token: localStorage.getItem('token')} })
       .then(res => this.posts = res.data,
       err => {
         console.log(err.response)
@@ -57,7 +60,8 @@ export default {
     },
     async login() {
       const loginData = {email: this.username, password: this.password}
-      await this.$axios.post('http://localhost:3000/api/user/login', loginData)
+      await this.$axios.post('https://in-kent.uk/api/user/login', loginData)
+      // await this.$axios.post('http://localhost:3000/api/user/login', loginData)
       // this.$axios.post('http://localhost:3000/api/user/login', loginData)
       .then(res => {
         if(res.status ===200) {
@@ -74,7 +78,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../../sass-mixins/_styles';
+@import '../../../sass-mixins/_styles';
 #naz {
   h1, * { color: rgb(175, 166, 166)}
   @include fullPage;
