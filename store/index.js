@@ -36,7 +36,7 @@ export const mutations = {
 export const actions = {
   async nuxtServerInit(store, context) {
     try {
-      const response = await context.$axios.get('orders_2020.php')
+      const response = await context.$axios.get('http://localhost:3020/api/orders')
       store.commit('restaurant/set_orders', response.data)
     } catch (error) {
       

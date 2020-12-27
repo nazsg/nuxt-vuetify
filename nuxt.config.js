@@ -1,6 +1,14 @@
 import colors from 'vuetify/es5/util/colors'
+// const path = require('path')
 
 export default {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:4000'
+      }
+    }
+  },
   // mode: 'universal',
   /*
   ** Headers of the page

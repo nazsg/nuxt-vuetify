@@ -12,6 +12,7 @@
       <show-menus v-if="selectedOrder != ''" />
     </div>
     <br/>
+    {{orderIDs}}
   </div>
 </template>
 
@@ -56,9 +57,10 @@ export default {
     // }
   },
   created() {
-    this.$axios.$get('orders_2020.php')
+    this.$axios.$get('http://localhost:3020/api/orders')
     .then(data => {
-      this.orderIDs = data
+      this.orderIDs = data.filter(o => o.status ==1)
+      console.log(this.orderIDs)
     })
   }  
 }

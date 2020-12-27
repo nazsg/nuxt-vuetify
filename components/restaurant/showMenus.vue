@@ -30,7 +30,7 @@ export default {
     }
   },
   created() {
-    this.$axios.$get('all')
+    this.$axios.$get('http://localhost:3020/api/menus')
     .then(data => {
       this.menus = data
     })

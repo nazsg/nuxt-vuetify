@@ -17,8 +17,8 @@
         Logged In successfully
       </h2>
       <button @click.prevent="show">show</button>
-      <p v-for="(post, i) in posts" :key="i">
-        {{ post.item }} <button>Edit</button>
+      <p v-for="(post, i) in posts" :key="i" v-html="post.comment">
+         <button>Edit</button>
       </p>
     </div>
 </div>
@@ -49,9 +49,9 @@ export default {
   },
   methods: {
     async show() {
-      // await this.$axios.get('http://localhost:4000/api/posts')
-      await this.$axios.get('https://in-kent.uk/api/menus', { headers: {token: localStorage.getItem('token')} })
-      // await this.$axios.get('http://localhost:3000/api/menus', { headers: {token: localStorage.getItem('token')} })
+      // await this.$axios.get('/api/menus')
+      // await this.$axios.get('https://in-kent.uk/api/menus', { headers: {token: localStorage.getItem('token')} })
+      await this.$axios.get('http://localhost:3020/api/journals', { headers: {token: localStorage.getItem('token')} })
       .then(res => this.posts = res.data,
       err => {
         console.log(err.response)
@@ -60,9 +60,9 @@ export default {
     },
     async login() {
       const loginData = {email: this.username, password: this.password}
-      await this.$axios.post('https://in-kent.uk/api/user/login', loginData)
-      // await this.$axios.post('http://localhost:3000/api/user/login', loginData)
-      // this.$axios.post('http://localhost:3000/api/user/login', loginData)
+      // await this.$axios.post('https://in-kent.uk/api/user/login', loginData)
+      // await this.$axios.post('/api/user/login', loginData)
+      this.$axios.post('http://localhost:3020/api/user/login', loginData)
       .then(res => {
         if(res.status ===200) {
           localStorage.setItem('token', res.data.token)
