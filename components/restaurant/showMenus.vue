@@ -2,7 +2,7 @@
   <div class="menus">        
     <categories v-on:relay="category = arguments[0]"    
       :category="category" :menus="menuCategories" />
-    <helper-table :menus="menus" :category="category" />
+    <helper-table :menus="menus" :category="category" v-if="category != ''" />
   </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
       .filter(m => m != 'header')
       .filter(m => m != 'category')
       .filter(m => m != '')
-    }
+    },
   },
   methods: {
     setCategory(value) {
@@ -30,7 +30,7 @@ export default {
     }
   },
   created() {
-    this.$axios.$get('http://localhost:3020/api/menus')
+    this.$axios.$get('api/menus')
     .then(data => {
       this.menus = data
     })

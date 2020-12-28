@@ -12,7 +12,6 @@
       <show-menus v-if="selectedOrder != ''" />
     </div>
     <br/>
-    {{orderIDs}}
   </div>
 </template>
 
@@ -57,7 +56,7 @@ export default {
     // }
   },
   created() {
-    this.$axios.$get('http://localhost:3020/api/orders')
+    this.$axios.$get('api/orders')
     .then(data => {
       this.orderIDs = data.filter(o => o.status ==1)
       console.log(this.orderIDs)

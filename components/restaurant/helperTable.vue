@@ -1,8 +1,8 @@
 <template>
   <ul class="table">
-    <template v-for="(menu, index) in menus">
+    <template v-for="(menu, index) in partMenu">
       <li
-        v-if="menu.category == category"
+        v-if="(menu.category == category)"
         :key="index"        
       >
         <span class="item">{{ menu.item.slice(0, 40) }}</span>
@@ -31,6 +31,13 @@ export default {
   computed: {
     current() {
       return this.$store.getters["restaurant/get_current_order"];
+    },
+    partMenu() {
+      return this.menus
+      .filter(m => m.category != 'header')
+      .filter(m => m.category == this.category)
+      .filter(m => m.category != '')
+      .slice(-7)
     },
     qty() {
       let orders = this.$store.getters["restaurant/get_orders"];

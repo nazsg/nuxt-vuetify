@@ -1,10 +1,17 @@
 <template>
   <div class="showcase">    
-      <form class="robot">
+    <div v-if="formSubmitted">
+      <p style="margin-top:20px;color: white">Thank you. Your message has been submitted.</p>
+    </div>    
+      <form v-else class="robot">
         <ul>
           <li class="name">
             <label for="name">Name</label>
             <input type="text" placeholder="Your name" v-model="visitor.name">
+          </li>
+          <li class="name">
+            <label for="email">Email</label>
+            <input type="text" placeholder="Your name" v-model="visitor.email">
           </li>
           <li class="message">
             <label for="message">Message</label>
@@ -42,8 +49,10 @@
           <li class=" action">
             <button @click.prevent="callPin">Reload</button> 
             <!-- <button @click.prevent="resetForm">Clear</button> -->
-            <button @click.prevent="submit" class="submit" :class="{allowForm}">Submit</button>
+            <button v-if="!allowForm" @click.prevent="" class="submit" >Submit</button>
+            <button v-else @click.prevent="validate" :class="{allowForm}">Submit</button>
           </li>
+          <p class="formErro">{{ formError }}</p>
         </ul>
       </form>
   </div>
@@ -65,12 +74,13 @@ export default {
     return {
       pin: [], choice: norobots.choice,
       visitor: {
-        name: '', email: '', message: ''
-      },
+        name: 'naz', email: 'dev@nazs.net', message: 'test'      },
       allowForm: true,
       guessPin: [],
       pin2: [],
-      choice2: norobots.choice2
+      choice2: norobots.choice2,
+      formSubmitted: false,
+      formError: ''
     }
   },  
   created() {
@@ -85,21 +95,24 @@ export default {
     },
     callPin() {
       this.pin = []
-      this.$axios.$get('noRobot')
-      .then(data => {
-        this.pin.push(Math.floor( (data /1000) %10))
-        this.pin.push(Math.floor( (data /100) %10))
-        this.pin.push(Math.floor( (data /10) %10))
-        this.pin.push(Math.floor( (data /1) %10))
-        this.pin = this.pin
-          .filter( (val, index, self) => self.indexOf(val) === index )
-        this.guessPin = []
-        this.result = ''
-        this.allowForm = false    
-        // this.shuffleChoice(this.choice)
-        this.choice = norobots.choice
-        this.shuffleChoice(this.choice2)
-      })     
+      // this.$axios.$get('noRobot')
+      // this.pin.push(Math.floor( (data /1000) %10))
+      // this.pin.push(Math.floor( (data /100) %10))
+      // this.pin.push(Math.floor( (data /10) %10))
+      // this.pin.push(Math.floor( (data /1) %10))
+      this.pin.push(Math.floor(Math.random() * 7) + 1) 
+      this.pin.push(Math.floor(Math.random() * 7) + 1) 
+      this.pin.push(Math.floor(Math.random() * 7) + 1) 
+      this.pin.push(Math.floor(Math.random() * 7) + 1) 
+      this.pin = this.pin
+        .filter( (val, index, self) => self.indexOf(val) === index )
+      this.guessPin = []
+      this.result = ''
+      this.allowForm = false    
+      // this.shuffleChoice(this.choice)
+      this.choice = norobots.choice
+      this.shuffleChoice(this.choice2)
+      
     },
     genPin() {
       let all = []
@@ -122,8 +135,36 @@ export default {
       if(this.pin.length == 0) this.allowForm = true
       // this.shuffleChoice(this.choice)
     },
+    validate() {
+      let _ = this.visitor
+      let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      let err = false
+      let email_err = ''
+      if(_.name == '' || _.email == '' || _.message == '') err = true
+      if(_.email.trim() !== '') {
+        if(re.test(String(_.email).toLowerCase()) == false) {
+          err = true; email_err = ' and email needs a valid format'
+        }
+      } else { err = true }
+      if(err == true) this.formError = 'pls fill out all fields' + email_err
+      if(err == false) this.submit()
+    },
     submit() {
-
+      this.$axios.post('api/mail/mail2', this.visitor )
+      .then( res => {
+        if(!res.data.error) {  // email server error
+          console.log(res)
+          this.formSubmitted = true
+        } 
+        else {
+          console.log(res)
+          this.formError = "Sorry your message was not sent. Please try again later.";
+        }
+      })
+      .catch(err => { // route error
+        console.log(err)
+        this.formError = "Sorry your message was not sent. Please try again later.";
+      })
     },
     shuffleChoice(array) {
       for (let i = array.length - 1; i > 0; i--) {
@@ -143,7 +184,7 @@ $border-size: 0px;
 
 .showcase {
   @include fullPage;
-  background: url('https://nazs.net/static/wallpaper.jpg') no-repeat;
+  background: url('/wallpaper.jpg') no-repeat;
   height: 100%;
 }
 

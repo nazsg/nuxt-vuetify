@@ -5,7 +5,7 @@ export default {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:4000'
+        target: 'http://localhost:3020'
       }
     }
   },
@@ -67,7 +67,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'https://nazs.net/'
+    baseURL: 'http://localhost:3020/'
   },
   /*
   ** vuetify module configuration
@@ -91,7 +91,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-   vendor: ['iview'],
+  //  vendor: ['iview'],
     extend(config, ctx) {
     }
   }
