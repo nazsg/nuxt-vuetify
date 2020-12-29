@@ -13,7 +13,7 @@
           <li  @click="hide"><nuxt-link to="/test">test</nuxt-link></li> -->
           <li  @click="hide"><nuxt-link to="/restaurant">Restaurant Sample</nuxt-link></li>
           <li><a href="https://nazs.net/holiday">Holiday Proto</a></li>
-          <li  @click="hide"><nuxt-link to="/journal">Journal</nuxt-link></li>
+          <!-- <li  @click="hide"><nuxt-link to="/journal">Journal</nuxt-link></li> -->
         </ul>
       </li>
     </ul>

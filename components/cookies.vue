@@ -2,15 +2,17 @@
 <div>
 
   <div id="cookies" v-if="show">
-    we use cookies to optimise your user experience 
+    cookies are used to optimise your user experience, 
     by navigating you agree to using cookies.
-    <a href="https://www.allaboutcookies.org" target="_blank">all about cookies</a>
     <button @click="show = false">OK</button>
     <button v-if="!custom" @click="custom = true">Show more </button>
     <div v-if="custom">
+    <a href="https://www.allaboutcookies.org" target="_blank">all about cookies</a>
       <!-- <h2>Necessary</h2> -->
         <p>
-  These technologies are essential for the functionality of our websites and tools and your experience with them. We use them to count visits and traffic sources so that we can improve our performance. Find out more in our privacy policy and see the full cookie list here.
+  These technologies are essential for the functionality of this website 
+  <!-- and  and your experience with them.  -->
+  <!-- We use them to count visits and traffic sources so that we can improve our performance -->
 
         </p>
     </div>

@@ -92,7 +92,7 @@ export default {
       }
       li {
         text-align: left;
-        padding: 10px;
+        padding: 7px;
         flex-basis: 30%;
         flex-wrap: wrap;
         // @include border1;

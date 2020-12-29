@@ -6,12 +6,15 @@
       <form v-else class="robot">
         <ul>
           <li class="name">
+            <!-- <label for="name">Name</label> -->
             <input type="text" placeholder="name" v-model="visitor.name">
           </li>
           <li class="name">
+            <!-- <label for="email">Email</label> -->
             <input type="text" placeholder="email" v-model="visitor.email">
           </li>
           <li class="message">
+            <!-- <label for="message">Message</label> -->
             <textarea name="" id="" cols="30" rows="5" placeholder="message" v-model="visitor.message" ></textarea>
           </li>
 
@@ -22,6 +25,7 @@
                   v-html="no.n" 
                   class="others">
                 </i>
+                <!-- <i v-else :key="index" class="others">&#10004;</i> -->
               </template>
             </li>
           </template>
@@ -34,12 +38,18 @@
             <li class=" choice">
               <template v-for="(no, index) in choice">
                 <i :key="index" v-html="no.n" class="pin" @click="checkPin(no.d)"></i>
+                <!-- <i v-if="pin.includes(no.d)" :key="index" 
+                  v-html="no.n" 
+                  class="pin" @click="checkPin(no.d)"                
+                ></i>
+                <i v-else :key="index" class="others">&#10004;</i> -->
               </template>
             </li>
           </template>
-          <li class="action">
+          <li class=" action">
             <button @click.prevent="clear">Clear</button> 
             <button @click.prevent="callPin">Reload</button> 
+            <!-- <button @click.prevent="resetForm">Clear</button> -->
             <button v-if="!allowForm" @click.prevent="" class="submit" >Submit</button>
             <button v-else @click.prevent="validate" :class="{allowForm}">Submit</button>
           </li>
@@ -169,13 +179,9 @@ $border-size: 0px;
   @include fullPage;
   background: url('/wallpaper.jpg') no-repeat;
   height: 100%;
-
+}
 
 form.robot {
- @media (min-width: 800px) {
-   max-width: 800px;
-   margin: 0 auto;
- }  
   * {
     transition: 300ms;
   }
@@ -238,7 +244,7 @@ form.robot {
   }
   li.action {
     // flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
 
     button {
       outline: none;
@@ -309,7 +315,7 @@ form.robot {
 form.robot li.action {
   @media (max-width: 500px) {
     display: flex;
-    // flex-direction: column;
+    flex-direction: column;
     
   }
 
@@ -317,9 +323,5 @@ form.robot li.action {
 }
 form.robot li {
   border: none;
-}
- .formErro {padding: 10px;}
-
-
 }
 </style>
