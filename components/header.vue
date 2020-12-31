@@ -1,25 +1,29 @@
 <template>
   <nav class="nav-area">
     <ul>
-      <li ><nuxt-link  to="/">Home</nuxt-link></li>
-      <li class="drop-down" :class="{hideUL : hideUL}"
-        @mouseover = "hideUL = false"
+      <li><nuxt-link to="/">Home</nuxt-link></li>
+      <li
+        class="drop-down"
+        :class="{ hideUL: hideUL }"
+        @mouseover="hideUL = false"
       >
-        <a href="#">Projects
-      </a>
-        <ul >
-          <li @click="hide"><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
+        <a href="#">Projects </a>
+        <ul>
+          <li @click="hide">
+            <nuxt-link to="/no-robots">No Robots</nuxt-link>
+          </li>
           <!-- <li  @click="hide"><nuxt-link to="/menus">Naz2</nuxt-link></li>
           <li  @click="hide"><nuxt-link to="/test">test</nuxt-link></li> -->
-          <li @click="hide"><nuxt-link to="/restaurant">Restaurant Sample</nuxt-link></li>
+          <li @click="hide">
+            <nuxt-link to="/restaurant">Restaurant Sample</nuxt-link>
+          </li>
           <li><a href="https://nazs.net/holiday">Holiday Proto</a></li>
           <!-- <li  @click="hide"><nuxt-link to="/journal">Journal</nuxt-link></li> -->
           <!-- <li  @click="hide"><nuxt-link to="/jupiter">jupiter</nuxt-link></li> -->
-        
         </ul>
       </li>
     </ul>
-  </nav>  
+  </nav>
 </template>
 
 <script>
@@ -27,20 +31,20 @@ export default {
   data() {
     return {
       show: false,
-      hideUL: false
+      hideUL: false,
     }
   },
   methods: {
     hide() {
       this.show = !this.show
       this.hideUL = true
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
-$col1 : #000;
-$col2 : #262626;
+$col1: #000;
+$col2: #262626;
 $a-color: #290953;
 $hover: #532391;
 $a-color2: #3f1772;
@@ -54,7 +58,7 @@ $a-border: #b386ee;
 
 .hideUL {
   ul li {
-  display: none;
+    display: none;
   }
 }
 
@@ -108,7 +112,7 @@ $a-border: #b386ee;
   .drop-down {
     position: relative;
     > a:after {
-      content: "+";
+      content: '+';
       padding: 5px;
     }
     li {
@@ -124,7 +128,7 @@ $a-border: #b386ee;
       }
     }
   }
-  .drop-down ul  {
+  .drop-down ul {
     position: absolute;
     left: 0;
     top: 100%;
@@ -133,10 +137,9 @@ $a-border: #b386ee;
   }
 }
 
-
-@media (max-width:600px) {
-    .nav-area ul li {
-        width: 100%;
-    }
+@media (max-width: 600px) {
+  .nav-area ul li {
+    width: 100%;
+  }
 }
 </style>
