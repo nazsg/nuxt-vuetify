@@ -151,4 +151,7 @@ html {
    @import './journal';
  }
 
+  @import "~/layouts/featured";
+  @import "~/layouts/newEvent";
+
 </style>

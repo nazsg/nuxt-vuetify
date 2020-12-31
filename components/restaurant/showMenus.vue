@@ -29,10 +29,11 @@ export default {
       this.category = value
     }
   },
-  created() {
-    this.$axios.$get('api/menus')
+  mounted() {
+    this.$axios.$get('https://nazs.net/api/menus')
     .then(data => {
       this.menus = data
+      console.log(this.menus);
     })
   }
 }

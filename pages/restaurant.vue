@@ -5,8 +5,7 @@
       <!-- :total="total" :count="count"  
       closeModal="closeModal" 
       -->
-      <cart-summary :selected="selectedOrder" 
-      />
+      <cart-summary :selected="selectedOrder"/>
 
       <show-orders :selected="selectedOrder" :orders="orderIDs" v-on:setOrder='selectedOrder = arguments[0]' />
       <show-menus v-if="selectedOrder != ''" />
@@ -17,6 +16,7 @@
 
 <script>
 export default {
+  layout: 'default',
     head: {
     title: 'Restaurant sample',
     meta: [
@@ -56,10 +56,10 @@ export default {
     // }
   },
   created() {
-    this.$axios.$get('api/orders')
+    this.$axios.$get('https://nazs.net/api/orders')
     .then(data => {
       this.orderIDs = data.filter(o => o.status ==1)
-      console.log(this.orderIDs)
+      // console.log(this.orderIDs)
     })
   }  
 }

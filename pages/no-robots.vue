@@ -1,9 +1,10 @@
 <template>
   <div class="showcase">    
     <div v-if="formSubmitted">
-      <p style="margin-top:20px;color: white">Thank you. Your message has been submitted.</p>
+      <p class="submitted">..didn't think you'd submit but thank you.</p>
     </div>    
       <form v-else class="robot">
+        <li class="name">Implementation of captcha</li>
         <ul>
           <li class="name">
             <input type="text" placeholder="name" v-model="visitor.name">
@@ -52,6 +53,7 @@
 <script>
 import norobots from '~/functions/norobots'
 export default {
+    layout: 'default',
     head: {
     title: 'No Robots',
     meta: [
@@ -166,8 +168,14 @@ $color2: #b345c2;
 $border-size: 0px;
 
 .showcase {
+  .submitted {
+    // color: white;
+    letter-spacing: 4px;
+    background: #999;
+    padding: 15px;
+  }
   @include fullPage;
-  background: url('/wallpaper.jpg') no-repeat;
+  background-image: url('/wallpaper.jpg');
   height: 100%;
 
 
@@ -225,7 +233,9 @@ form.robot {
     // background-color: #fff;
     flex-direction: row;
     // border: $border-size dotted #999;
-    text-align: right;
+    // text-align: right;
+    letter-spacing: 1.4px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     @media (max-width: 600px) {
       flex-direction: column;
       label {

@@ -5,6 +5,7 @@
     </div>    
       <form v-else class="robot">
         <ul>
+        <li class="name">Implementation of captcha</li>
           <li class="name">
             <!-- <label for="name">Name</label> -->
             <input type="text" placeholder="name" v-model="visitor.name">

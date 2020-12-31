@@ -11,9 +11,11 @@
           <li @click="hide"><nuxt-link to="/no-robots">No Robots</nuxt-link></li>
           <!-- <li  @click="hide"><nuxt-link to="/menus">Naz2</nuxt-link></li>
           <li  @click="hide"><nuxt-link to="/test">test</nuxt-link></li> -->
-          <li  @click="hide"><nuxt-link to="/restaurant">Restaurant Sample</nuxt-link></li>
+          <li @click="hide"><nuxt-link to="/restaurant">Restaurant Sample</nuxt-link></li>
           <li><a href="https://nazs.net/holiday">Holiday Proto</a></li>
           <!-- <li  @click="hide"><nuxt-link to="/journal">Journal</nuxt-link></li> -->
+          <!-- <li  @click="hide"><nuxt-link to="/jupiter">jupiter</nuxt-link></li> -->
+        
         </ul>
       </li>
     </ul>

@@ -2,13 +2,13 @@ import colors from 'vuetify/es5/util/colors'
 // const path = require('path')
 
 export default {
-  devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3020'
-      }
-    }
-  },
+  // devServer: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:3020'
+  //     }
+  //   }
+  // },
   // mode: 'universal',
   /*
   ** Headers of the page

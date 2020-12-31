@@ -19,6 +19,7 @@ import videoBg from '~/components/video'
 import indexOld from '~/components/index-old'
 import cross from "vue-material-design-icons/Close.vue";
 export default {
+  layout: 'default',
   components: { cross, indexOld, videoBg, cookies },
     head: {
     title: 'NazsNet | Front-end web dev',
