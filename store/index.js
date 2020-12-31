@@ -3,19 +3,19 @@ export const state = () => ({
   starters: [],
   soups: [],
   all_main_menus: [],
-  show_home: false
+  show_home: false,
 })
 
 export const getters = {
-  getTest: (state) => {
+  getTest: state => {
     return state.test
   },
-  getStarters: (state) => {
+  getStarters: state => {
     return state.starters
   },
   getShowHome: state => {
     return state.show_home
-  }
+  },
 }
 
 export const mutations = {
@@ -30,18 +30,16 @@ export const mutations = {
   },
   set_show_home(state) {
     state.show_home = true
-  }
+  },
 }
 
 export const actions = {
   async nuxtServerInit(store, context) {
     try {
-      const response = await context.$axios.get('http://localhost:3020/api/orders')
+      const response = await context.$axios.get('https://nazs.net/api/orders')
       store.commit('restaurant/set_orders', response.data)
-    } catch (error) {
-      
-    }
-  }
+    } catch (error) {}
+  },
 }
 
 // {{ $store.state.starters }} (state)  <hr />
