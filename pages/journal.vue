@@ -47,8 +47,9 @@
                     class="fonts"
                     :key="index"
                     :class="font.key"
-                    >{{ font.name }}</option
                   >
+                    {{ font.name }}
+                  </option>
                 </template>
               </select>
 
@@ -63,15 +64,16 @@
                     class="fonts"
                     :key="index"
                     :class="size.key"
-                    >{{ size.name }}</option
                   >
+                    {{ size.name }}
+                  </option>
                 </template>
               </select>
             </div>
           </div>
         </div>
         <textarea
-          style="display:none;font-family:Courier"
+          style="display: none; font-family: Courier"
           name="myTextArea"
           id="myTextArea"
           cols="30"
@@ -89,7 +91,7 @@
           <v-btn @click="submitLog">Submit</v-btn>
         </div>
       </form>
-      <button @click="login">login</button>
+      <!-- <button @click="login">login</button> -->
     </div>
   </div>
 </template>
@@ -108,17 +110,19 @@ export default {
   },
   computed: {
     filteredTips() {
-      return this.tips.filter((tip) => {
+      return this.tips.filter(tip => {
         return tip.comment.match(this.search)
       })
     },
   },
   mounted() {
     this.el = this.$refs.richTextField.name
-    wys.editableFrame(this.el)
+    setTimeout(() => {
+      wys.editableFrame(this.el)
+    }, 100)
   },
   created() {
-    this.$axios.get('api/journals').then((data) => (this.tips = data.data))
+    this.$axios.get('api/journals').then(data => (this.tips = data.data))
   },
   methods: {
     login() {
@@ -127,7 +131,7 @@ export default {
           email: 'test@google.org',
           password: '123456',
         })
-        .then((res) => {
+        .then(res => {
           console.log(res.data)
           localStorage.setItem('token', res.data.token)
         })
@@ -159,7 +163,7 @@ export default {
         .post('/api/journals', info, {
           headers: { token: localStorage.getItem('token') },
         })
-        .then((data) => {
+        .then(data => {
           console.log(data.data)
         })
       this.clearFrame()

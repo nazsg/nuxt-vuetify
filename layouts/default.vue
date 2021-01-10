@@ -3,14 +3,14 @@
     <div class="content">
       <appHeader />
       <nuxt />
-    <cookies />
+      <cookies />
     </div>
     <appFooter />
   </div>
 </template>
 
 <style lang="scss">
-@import "../../sass-mixins/_styles";
+@import '../../sass-mixins/_styles';
 $color: #4f0a58;
 $color2: #b345c2;
 * {
@@ -33,21 +33,20 @@ html {
       color: white;
     }
 
-  .v-picker {
-
-    &.theme--light.v-card {
-      background-color: #5785ac;
+    .v-picker {
+      &.theme--light.v-card {
+        background-color: #5785ac;
+      }
+      .v-btn {
+        color: #999;
+      }
+      .v-btn.v-btn--active {
+        color: #3c4042;
+        background-color: #9cb9d1;
+      }
     }
-    .v-btn {
-      color: #999;
-    }
-    .v-btn.v-btn--active {
-      color: #3c4042;
-      background-color: #9cb9d1;
-    }
-  }
     @include fullPage;
-    background-image: url("/wallpaper.jpg");
+    background-image: url('/wallpaper.jpg');
     justify-content: flex-start;
     height: 100%;
     .dimBanner {
@@ -63,14 +62,14 @@ html {
       color: #d8d3d3e8;
       padding: 30px;
       font-size: 4rem;
-      font-family: "Caveat", cursive;
+      font-family: 'Caveat', cursive;
       letter-spacing: 3px;
       h3,
       h4 {
         transition: 1s;
       }
       h4 {
-        font-family: "Stardos Stencil", cursive;
+        font-family: 'Stardos Stencil', cursive;
         font-size: 2.5rem;
       }
     }
@@ -147,11 +146,37 @@ html {
     }
   }
 }
- #wys {
-   @import './journal';
- }
+.theme--light.v-application {
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  @include fullPage;
+}
 
-  @import "~/layouts/featured";
-  @import "~/layouts/newEvent";
+.login {
+  @include fullPage;
+  background-image: url('/blue-purple.jpg');
+  height: 100%;
+  form {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-top: -10%;
+    border-radius: 10px;
+    background-color: #ffffffc2;
+    button {
+      border-radius: 5%;
+    }
+    input {
+      padding: 10px;
+      background-color: #fff;
+    }
+  }
+}
+#wys {
+  @import './journal';
+}
 
+@import '~/layouts/featured';
+@import '~/layouts/newEvent';
 </style>

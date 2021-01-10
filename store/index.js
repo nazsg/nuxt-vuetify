@@ -34,12 +34,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async nuxtServerInit(store, context) {
-    try {
-      const response = await context.$axios.get('https://nazs.net/api/orders')
-      store.commit('restaurant/set_orders', response.data)
-    } catch (error) {}
-  },
+  // async nuxtServerInit(store, context) {
+  //   try {
+  //     const response = await context.$axios.get('https://nazs.net/api/orders')
+  //     store.commit('restaurant/set_orders', response.data)
+  //   } catch (error) {}
+  // },
 }
 
 // {{ $store.state.starters }} (state)  <hr />

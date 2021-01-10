@@ -11,37 +11,40 @@ export default {
   // },
   // mode: 'universal',
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     // titleTemplate: '%s - ' + process.env.npm_package_name,
     title: 'Resources and such' || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || '',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css2?family=Caveat&family=Sacramento&family=Satisfy&family=Allerta+Stencil&family=Stardos+Stencil:wght@700&display=swap'
-      }
-    ]
+          'https://fonts.googleapis.com/css2?family=Caveat&family=Sacramento&family=Satisfy&family=Allerta+Stencil&family=Stardos+Stencil:wght@700&display=swap',
+      },
+    ],
   },
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#fff' },
   /*
-  ** Global CSS
-  */
-  css: [ '~assets/style/main.scss'
-  ],
+   ** Global CSS
+   */
+  css: ['~assets/style/main.scss'],
   /*
-  ** Plugins to load before mounting the App
-  */
+   ** Plugins to load before mounting the App
+   */
   plugins: [
     '~plugins/bus',
     '~plugins/core-components',
@@ -49,30 +52,39 @@ export default {
     // '~store/index'
   ],
   components: true,
-  router : {
+  router: {
     // middleware: []
   },
   /*
-  ** Nuxt.js modules
-  */
-  modules: [
+   ** Nuxt.js modules
+   */
+  buildModules: [
     '@nuxtjs/vuetify',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/moment',
+    'nuxt-compress',
     // 'nuxt-polyfill'
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
-  axios: {
-    baseURL: 'https://nazs.net'
+  'nuxt-compress': {
+    gzip: {
+      cache: true,
+    },
+    brotli: {
+      threshold: 10240,
+    },
   },
   /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {
+    baseURL: 'https://nazs.net',
+  },
+  /*
+   ** vuetify module configuration
+   ** https://github.com/nuxt-community/vuetify-module
+   */
   vuetify: {
     theme: {
       primary: colors.blue.darken2,
@@ -81,19 +93,17 @@ export default {
       info: colors.teal.lighten1,
       warning: colors.amber.base,
       error: colors.deepOrange.accent4,
-      success: colors.green.accent3
-    }
+      success: colors.green.accent3,
+    },
   },
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     /*
-    ** You can extend webpack config here
-    */
-  //  vendor: ['iview'],
-    extend(config, ctx) {
-    }
-  }
-  
+     ** You can extend webpack config here
+     */
+    //  vendor: ['iview'],
+    extend(config, ctx) {},
+  },
 }

@@ -16,6 +16,7 @@
     "@nuxtjs/vuetify": "0.5.5",
     "node-sass": "^4.14.1",
     "nuxt": "^2.14.6",
+    "nuxt-compress": "^4.1.0",
     "sass-loader": "^8.0.2",
     "url-polyfill": "^1.1.8",
     "view-design": "^4.2.0",

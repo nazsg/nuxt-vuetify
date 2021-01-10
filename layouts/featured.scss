@@ -2,7 +2,7 @@
   h2 {
     color: red;
   }
-  
+
   .featuredBox {
     display: flex;
     flex-direction: column;
@@ -14,33 +14,39 @@
       flex-direction: column;
       padding: 5px;
       font-family: 'Fira code';
-      background-color:#4d4c4c;
+      background-color: #4d4c4c;
       color: white;
       .prompt {
         flex-grow: 1;
       }
-      
+
       .entries {
         flex-grow: 9;
+        font-family: 'Fira Code';
+        div {
+          display: flex;
+          justify-content: space-between;
+          span {
+            color: grey;
+          }
+        }
       }
-  
     }
-    @media(min-width: 500px) {
+    @media (min-width: 500px) {
       max-width: 500px;
       @include centerItem;
-      
+
       .featuredContent {
         flex-direction: row;
       }
     }
-    @media(min-width: 800px) {
+    @media (min-width: 800px) {
       max-width: 750px;
       @include centerItem;
     }
-    @media(min-width: 950px) {
+    @media (min-width: 950px) {
       max-width: 900px;
       @include centerItem;
     }
   }
-
 }
