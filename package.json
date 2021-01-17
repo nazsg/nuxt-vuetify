@@ -18,10 +18,13 @@
     "nuxt": "^2.14.6",
     "nuxt-compress": "^4.1.0",
     "sass-loader": "^8.0.2",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^4.3.3",
     "url-polyfill": "^1.1.8",
     "view-design": "^4.2.0",
     "vue-i18n": "^8.17.4",
-    "vue-material-design-icons": "^4.6.0"
+    "vue-material-design-icons": "^4.6.0",
+    "vuetify-loader": "^1.6.0"
   },
   "devDependencies": {}
 }

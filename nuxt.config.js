@@ -2,6 +2,7 @@ import colors from 'vuetify/es5/util/colors'
 // const path = require('path')
 
 export default {
+  target: 'static',
   // devServer: {
   //   proxy: {
   //     '/api': {
@@ -58,8 +59,9 @@ export default {
   /*
    ** Nuxt.js modules
    */
+  // '@nuxtjs/vuetify',
   buildModules: [
-    '@nuxtjs/vuetify',
+    ['@nuxtjs/vuetify', { treeShake: true }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/moment',
@@ -99,7 +101,9 @@ export default {
   /*
    ** Build configuration
    */
+  // analyze: true,
   build: {
+    extractCSS: true,
     /*
      ** You can extend webpack config here
      */
