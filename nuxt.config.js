@@ -65,17 +65,17 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/moment',
-    'nuxt-compress',
+    // 'nuxt-compress',
     // 'nuxt-polyfill'
   ],
-  'nuxt-compress': {
-    gzip: {
-      cache: true,
-    },
-    brotli: {
-      threshold: 10240,
-    },
-  },
+  // 'nuxt-compress': {
+  //   gzip: {
+  //     cache: true,
+  //   },
+  //   brotli: {
+  //     threshold: 10240,
+  //   },
+  // },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

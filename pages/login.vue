@@ -28,6 +28,7 @@ export default {
           .then(res => {
             console.log(res.data)
             if (res.statusText === 'OK') {
+              this.$store.commit('set_loggedIn', true)
               localStorage.setItem('token', res.data.token)
               this.$router.push('/journal')
             }

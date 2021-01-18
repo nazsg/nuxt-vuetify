@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="journalContainer">
-      <input type="text" v-model="search" class="search" />
+      <div class="filter">
+        <input type="text" v-model="search" class="search" />
+        <Close @click="clearSearch" class="btn" />
+        <Close @click="logout" class="btn" />
+      </div>
       <!-- {{tips}} -->
       <template v-if="search != ''">
         <div class="journal" v-for="(tip, index) in filteredTips" :key="index">
@@ -99,6 +103,7 @@
 <script>
 import wys from '~/functions/wysiwyg'
 export default {
+  middleware: 'login',
   data() {
     return {
       tips: [],
@@ -125,6 +130,13 @@ export default {
     this.$axios.get('api/journals').then(data => (this.tips = data.data))
   },
   methods: {
+    clearSearch() {
+      this.search = ''
+    },
+    logout() {
+      this.$store.commit('set_loggedIn', false)
+      localStorage.removeItem('token')
+    },
     login() {
       this.$axios
         .post('/api/user/login', {
@@ -179,6 +191,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 350px;
+  margin: 0 auto;
+}
+.close-icon.btn {
+  color: #999;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+}
 .search {
   display: flex;
   width: 300px;

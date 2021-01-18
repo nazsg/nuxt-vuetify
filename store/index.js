@@ -4,6 +4,7 @@ export const state = () => ({
   soups: [],
   all_main_menus: [],
   show_home: false,
+  loggedIn: false,
 })
 
 export const getters = {
@@ -15,6 +16,9 @@ export const getters = {
   },
   getShowHome: state => {
     return state.show_home
+  },
+  getloggedIn: state => {
+    return state.loggedIn
   },
 }
 
@@ -30,6 +34,9 @@ export const mutations = {
   },
   set_show_home(state) {
     state.show_home = true
+  },
+  set_loggedIn(state, arg) {
+    state.loggedIn = arg
   },
 }
 
