@@ -2,11 +2,7 @@
   <nav class="nav-area">
     <ul>
       <li><nuxt-link to="/">Home</nuxt-link></li>
-      <li
-        class="drop-down"
-        :class="{ hideUL: hideUL }"
-        @mouseover="hideUL = false"
-      >
+      <li class="drop-down" :class="{ hideUL: hideUL }" @mouseover="hideUL = false">
         <a href="#">Projects </a>
         <ul>
           <li @click="hide">
@@ -19,7 +15,7 @@
           </li>
           <li><a href="https://nazs.net/holiday">Holiday Proto</a></li>
 
-          <!-- <li  @click="hide"><nuxt-link to="/journal">Journal</nuxt-link></li> -->
+          <li @click="hide"><nuxt-link to="/journal">Journal</nuxt-link></li>
           <!-- <li  @click="hide"><nuxt-link to="/jupiter">jupiter</nuxt-link></li> -->
         </ul>
       </li>
@@ -33,15 +29,15 @@ export default {
     return {
       show: false,
       hideUL: false,
-    };
+    }
   },
   methods: {
     hide() {
-      this.show = !this.show;
-      this.hideUL = true;
+      this.show = !this.show
+      this.hideUL = true
     },
   },
-};
+}
 </script>
 <style lang="scss" scoped>
 $col1: #000;
@@ -113,7 +109,7 @@ $a-border: #b386ee;
   .drop-down {
     position: relative;
     > a:after {
-      content: "+";
+      content: '+';
       padding: 5px;
     }
     li {

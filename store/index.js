@@ -5,6 +5,7 @@ export const state = () => ({
   all_main_menus: [],
   show_home: false,
   loggedIn: false,
+  journal: '',
 })
 
 export const getters = {
@@ -19,6 +20,9 @@ export const getters = {
   },
   getloggedIn: state => {
     return state.loggedIn
+  },
+  getJournal: state => {
+    return state.journal
   },
 }
 
@@ -37,6 +41,9 @@ export const mutations = {
   },
   set_loggedIn(state, arg) {
     state.loggedIn = arg
+  },
+  set_journal(state, arg) {
+    state.journal = arg
   },
 }
 

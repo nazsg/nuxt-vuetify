@@ -10,6 +10,7 @@
       <template v-if="search != ''">
         <div class="journal" v-for="(tip, index) in filteredTips" :key="index">
           <!-- <div class="date" v-html="tip.formattedDate"></div> -->
+          <nuxt-link :to="`/editJournal/${tip._id}`"><Pencil /></nuxt-link>
           <div class="comment" v-html="tip.comment"></div>
         </div>
       </template>
@@ -27,14 +28,10 @@
             <button @click.prevent="format('richTextField', 'underline')">
               <i class="material-icons">&#xE249;</i>
             </button>
-            <button
-              @click.prevent="format('richTextField', 'insertunorderedlist')"
-            >
+            <button @click.prevent="format('richTextField', 'insertunorderedlist')">
               <i class="material-icons">&#xE241;</i>
             </button>
-            <button
-              @click.prevent="format('richTextField', 'insertorderedlist')"
-            >
+            <button @click.prevent="format('richTextField', 'insertorderedlist')">
               <i class="material-icons">&#xE242;</i>
             </button>
           </div>
@@ -46,12 +43,7 @@
               >
                 <option value="0">Change Font</option>
                 <template v-for="(font, index) in fontNames">
-                  <option
-                    :value="font.name"
-                    class="fonts"
-                    :key="index"
-                    :class="font.key"
-                  >
+                  <option :value="font.name" class="fonts" :key="index" :class="font.key">
                     {{ font.name }}
                   </option>
                 </template>
@@ -63,12 +55,7 @@
               >
                 <option value="0">Font Size</option>
                 <template v-for="(size, index) in fontUnit">
-                  <option
-                    :value="size.name"
-                    class="fonts"
-                    :key="index"
-                    :class="size.key"
-                  >
+                  <option :value="size.name" class="fonts" :key="index" :class="size.key">
                     {{ size.name }}
                   </option>
                 </template>
@@ -116,7 +103,7 @@ export default {
   computed: {
     filteredTips() {
       return this.tips.filter(tip => {
-        return tip.comment.match(this.search)
+        return tip.comment.toLowerCase().match(this.search.toLowerCase())
       })
     },
   },
@@ -125,6 +112,7 @@ export default {
     setTimeout(() => {
       wys.editableFrame(this.el)
     }, 100)
+    // console.log(localStorage)
   },
   created() {
     this.$axios.get('api/journals').then(data => (this.tips = data.data))
@@ -243,7 +231,7 @@ export default {
   }
   @media (min-width: 600px) {
     .journal {
-      flex-direction: row;
+      flex-direction: column;
       width: 580px;
       margin: 2px auto;
       .date {

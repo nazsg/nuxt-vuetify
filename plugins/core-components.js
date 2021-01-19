@@ -12,6 +12,7 @@ import DeleteIcon from 'vue-material-design-icons/Delete.vue'
 import RefreshIcon from 'vue-material-design-icons/Refresh.vue'
 import ContentCopy from 'vue-material-design-icons/ContentCopy.vue'
 import Close from 'vue-material-design-icons/Close.vue'
+import Pencil from 'vue-material-design-icons/Pencil.vue'
 
 Vue.component('appHeader', appHeader)
 Vue.component('appFooter', appFooter)
@@ -25,3 +26,4 @@ Vue.component('Delete', DeleteIcon)
 Vue.component('Refresh', RefreshIcon)
 Vue.component('ContentCopy', ContentCopy)
 Vue.component('Close', Close)
+Vue.component('Pencil', Pencil)
