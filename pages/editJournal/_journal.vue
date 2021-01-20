@@ -1,21 +1,76 @@
 <template>
-  <v-app>
-    <div class="editJournal">
+  <div>
+    <div class="newEvent">
       <form>
+        <div class="formats">
+          <div class="group1">
+            <button @click.prevent="format('richTextField', 'bold')">
+              <i class="material-icons">&#xE238;</i>
+            </button>
+            <button @click.prevent="format('richTextField', 'italic')">
+              <i class="material-icons">&#xE23F;</i>
+            </button>
+            <button @click.prevent="format('richTextField', 'underline')">
+              <i class="material-icons">&#xE249;</i>
+            </button>
+            <button @click.prevent="format('richTextField', 'insertunorderedlist')">
+              <i class="material-icons">&#xE241;</i>
+            </button>
+            <button @click.prevent="format('richTextField', 'insertorderedlist')">
+              <i class="material-icons">&#xE242;</i>
+            </button>
+          </div>
+          <div class="group2">
+            <div class="selects">
+              <select
+                ref="FontName"
+                @change="formatMore('FontName', 'richTextField', 'FontName')"
+              >
+                <option value="0">Change Font</option>
+                <template v-for="(font, index) in fontNames">
+                  <option :value="font.name" class="fonts" :key="index" :class="font.key">
+                    {{ font.name }}
+                  </option>
+                </template>
+              </select>
+
+              <select
+                ref="FontSize"
+                @change="formatMore('FontSize', 'richTextField', 'FontSize')"
+              >
+                <option value="0">Font Size</option>
+                <template v-for="(size, index) in fontUnit">
+                  <option :value="size.name" class="fonts" :key="index" :class="size.key">
+                    {{ size.name }}
+                  </option>
+                </template>
+              </select>
+            </div>
+          </div>
+        </div>
+        <textarea
+          style="display: none; font-family: Courier"
+          name="myTextArea"
+          id="myTextArea"
+          cols="30"
+          rows="5"
+        ></textarea>
         <iframe
           frameborder="1"
-          name="journal"
-          id="journal"
-          ref="journal"
-          class="myFrame2"
+          name="richTextField"
+          id="richTextField"
+          ref="richTextField"
+          class="myFrame"
         ></iframe>
         <div class="actions">
-          <v-btn>Cancel</v-btn>
-          <v-btn>Submit</v-btn>
+          <v-btn @click="$router.push('/journal')">Cancel</v-btn>
+          <v-btn @click="clear">Clear</v-btn>
+          <v-btn @click="submitLog">Submit</v-btn>
         </div>
       </form>
+      <!-- <button @click="login">login</button> -->
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -23,56 +78,180 @@ import wys from '~/functions/wysiwyg'
 export default {
   data() {
     return {
-      journal: {},
+      tips: [],
+      search: '',
+      fontNames: wys.fontNames,
+      fontUnit: wys.fontUnit,
+      el: '',
     }
+  },
+  computed: {
+    filteredTips() {
+      return this.tips.filter(tip => {
+        return tip.comment.toLowerCase().match(this.search.toLowerCase())
+      })
+    },
+  },
+  mounted() {
+    this.getJournal()
+    this.el = this.$refs.richTextField.name
+    if (this.$refs.richTextField != 'undefined') {
+      setTimeout(() => {
+        window.frames['richTextField'].document.designMode = 'On'
+      }, 1000)
+    }
+  },
+  created() {
+    this.$axios.get('api/journals').then(data => (this.tips = data.data))
   },
   methods: {
     getJournal() {
       let id = this.$route.params.journal
       this.$axios.get('api/journals/' + id).then(data => {
         this.journal = data.data
-        window.frames['journal'].document.body.innerHTML = data.data.comment
+        window.frames['richTextField'].document.body.innerHTML = data.data.comment
       })
     },
-  },
-  mounted() {
-    this.getJournal()
-    if (this.$refs.journal != 'undefined') {
+    clearSearch() {
+      this.search = ''
+    },
+    logout() {
+      this.$store.commit('set_loggedIn', false)
+      localStorage.removeItem('token')
+    },
+    login() {
+      this.$axios
+        .post('/api/user/login', {
+          email: 'test@google.org',
+          password: '123456',
+        })
+        .then(res => {
+          console.log(res.data)
+          localStorage.setItem('token', res.data.token)
+        })
+    },
+    clear() {
+      window.frames['richTextField'].document.body.innerHTML = ''
+    },
+    format(el, att) {
+      wys.formatBasic(el, att)
+    },
+    formatMore(ref, el, att) {
+      // let item = opt == 'font' ? 'FontName' : 'FontSize'
+      var ele = this.$refs[ref]
+      console.log(ele)
+      var myFont = ele.options[ele.selectedIndex].value
+      console.log(myFont)
+      wys.formatMore(el, att, myFont)
+      ele.value = 0
+    },
+    submitLog() {
+      // this.log.comment = wys.showForm(this.el)
+      let id = this.$route.params.journal
+      let info = {
+        comment: window.frames['richTextField'].document.body.innerHTML,
+        // topic: 'testing only',
+      }
+      console.log(info)
+      this.$axios
+        .put('/api/journals/' + id, info, {
+          headers: { token: localStorage.getItem('token') },
+        })
+        .then(data => {
+          console.log(data.data)
+        })
+      this.clearFrame()
+    },
+    clearFrame() {
       setTimeout(() => {
-        window.frames['journal'].document.designMode = 'On'
+        // this.log.topic = ''
+        document.getElementById(this.el).contentDocument.body.innerHTML = ''
       }, 1000)
-    }
+      this.$router.push('/journal')
+    },
   },
 }
 </script>
 
-<style lang="scss">
-@import '../../../sass-mixins/_styles';
-
-.application.theme--light {
-  height: 100%;
-  @include fullPage;
+<style lang="scss" scoped>
+.newEvent form {
+  margin-top: 20px;
 }
-.application--wrap {
-  min-height: inherit;
-  width: 100%;
+textarea {
+  background-color: rgb(247, 173, 173);
+  &:focus,
+  &:active,
+  &:hover {
+    background-color: rgb(219, 224, 150);
+  }
 }
-.editJournal {
-  @include fullPage;
-  height: 100%;
-}
-form {
-  margin-top: -20%;
+.filter {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 350px;
+  margin: 0 auto;
+}
+.close-icon.btn {
+  color: #999;
+  cursor: pointer;
+  &:hover {
+    color: red;
+  }
+}
+.search {
+  display: flex;
+  width: 300px;
+  border: 1px solid #ccc;
+  height: 30px;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  margin: 5px auto;
+  outline: none;
+  padding: 10px;
+}
+.journalContainer {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  @include fullPage;
-  iframe {
-    width: 100%;
-    height: 600px;
+  margin: 0 auto;
+  .journal {
+    // border: 1px solid #ccc;
+    .date {
+      background-color: #e7e6e6;
+      padding: 5px;
+    }
+
+    .comment {
+      padding: 15px;
+      word-wrap: break-word;
+      // word-wrap: break-all;
+      // word-wrap: normal;
+      white-space: initial;
+      // width: 550px;
+    }
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f4f4;
+    margin: 5px 0;
+  }
+  @media (min-width: 600px) {
+    .journal {
+      flex-direction: column;
+      width: 580px;
+      margin: 2px auto;
+      .date {
+        width: 20%;
+      }
+      .comment {
+        width: 80%;
+      }
+    }
+  }
+  @media (min-width: 800px) {
+    .journal {
+      width: 790px;
+    }
   }
 }
 </style>

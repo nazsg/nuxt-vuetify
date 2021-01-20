@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
     <div class="content">
-      <appHeader />
+      <my-header />
       <nuxt />
       <cookies />
     </div>
-    <appFooter />
+    <my-footer />
   </div>
 </template>
 

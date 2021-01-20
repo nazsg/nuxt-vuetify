@@ -4,7 +4,7 @@
       <div class="filter">
         <input type="text" v-model="search" class="search" />
         <Close @click="clearSearch" class="btn" />
-        <Close @click="logout" class="btn" />
+        <Logout @click="logout" class="btn" />
       </div>
       <!-- {{tips}} -->
       <template v-if="search != ''">
@@ -124,6 +124,7 @@ export default {
     logout() {
       this.$store.commit('set_loggedIn', false)
       localStorage.removeItem('token')
+      this.$router.push('/')
     },
     login() {
       this.$axios
@@ -179,6 +180,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+textarea {
+  background-color: rgb(247, 173, 173);
+  &:focus,
+  &:active,
+  &:hover {
+    background-color: rgb(219, 224, 150);
+  }
+}
 .filter {
   display: flex;
   flex-direction: row;
@@ -186,8 +195,9 @@ export default {
   width: 350px;
   margin: 0 auto;
 }
-.close-icon.btn {
+.material-design-icon.btn {
   color: #999;
+  padding: 0 10px;
   cursor: pointer;
   &:hover {
     color: red;

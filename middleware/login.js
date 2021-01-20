@@ -1,9 +1,10 @@
 export default function(context) {
-  // console.log('login')
-  // if (!localStorage.getItem('token')) {
-  // console.log(context.app)
-  if (context.store.getters.getloggedIn === false) {
-    console.log('redirected by cool middleware')
-    context.redirect('/')
+  if (typeof window !== 'undefined') {
+    // console.log('on client')
+    console.log(localStorage.getItem('token'))
+    if (localStorage.getItem('token') == null) {
+      console.log('redirected by cool middleware')
+      context.redirect('/')
+    }
   }
 }

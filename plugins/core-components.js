@@ -1,7 +1,7 @@
 import Vue from 'vue'
 
-import appHeader from '@/components/header'
-import appFooter from '@/components/footer'
+// import appHeader from '@/components/header'
+// import appFooter from '@/components/footer'
 // import cookies from '@/components/cookies'
 // import appBooking from '@/components/booking'
 
@@ -13,9 +13,10 @@ import RefreshIcon from 'vue-material-design-icons/Refresh.vue'
 import ContentCopy from 'vue-material-design-icons/ContentCopy.vue'
 import Close from 'vue-material-design-icons/Close.vue'
 import Pencil from 'vue-material-design-icons/Pencil.vue'
+import Logout from 'vue-material-design-icons/Logout.vue'
 
-Vue.component('appHeader', appHeader)
-Vue.component('appFooter', appFooter)
+// Vue.component('appHeader', appHeader)
+// Vue.component('appFooter', appFooter)
 // Vue.component('cookies', cookies)
 // Vue.component('appBooking', appBooking)
 
@@ -27,3 +28,4 @@ Vue.component('Refresh', RefreshIcon)
 Vue.component('ContentCopy', ContentCopy)
 Vue.component('Close', Close)
 Vue.component('Pencil', Pencil)
+Vue.component('Logout', Logout)

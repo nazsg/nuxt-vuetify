@@ -61,7 +61,8 @@ export default {
    */
   // '@nuxtjs/vuetify',
   buildModules: [
-    ['@nuxtjs/vuetify', { treeShake: true }],
+    '@nuxtjs/vuetify',
+    // ['@nuxtjs/vuetify', { treeShake: true }],
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/moment',
@@ -103,7 +104,7 @@ export default {
    */
   // analyze: true,
   build: {
-    extractCSS: true,
+    // extractCSS: true,
     /*
      ** You can extend webpack config here
      */
