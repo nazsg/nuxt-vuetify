@@ -1,0 +1,185 @@
+@import '../../../sass-mixins/common.scss';
+@import '../../../sass-mixins/base.scss';
+$mainColor: rgb(9, 202, 209);
+
+.material-design-icon.currentQty {
+  // cursor: crosshair;
+  &:hover {
+    color: orange;
+  }
+}
+.material-design-icon {
+  @include iconDisplay;
+}
+.material-design-icon.cartPlus {
+  @include iconButton($colour1: rgb(70, 70, 247));
+}
+.material-design-icon.cartMinus {
+  @include iconButton($colour1: #f74c4c);
+}
+.material-design-icon.cartHeader {
+  @include iconButton;
+}
+
+.showcase {
+  .video {
+    background-color: #fff;
+    width: 200px;
+    margin: 0 auto;
+  }
+  .results {
+    // color: blue;
+    // font-size: 2rem;
+    // position: absolute;
+    // top: 140px;
+    background-color: #ffffff8e;
+    width: 700px;
+    border-radius: 10px;
+    // display: none;
+  }
+}
+.hide {
+  display: none;
+}
+.restaurant {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 0px;
+  padding: 0px;
+
+  .cartSummary {
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    margin: 15px auto;
+    // @include border1;
+
+    .close {
+      @include iconButton;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
+  button {
+    border: 1px solid #999;
+    background-color: #fff;
+    padding: 10px;
+    margin: 5px;
+    outline: none;
+
+    &:hover {
+      background-color: #dadada;
+    }
+  }
+  button.selected {
+    background-color: #c9c9c9;
+  }
+  button.others {
+    background-color: #f2f8f5;
+  }
+  @mixin itemHeader {
+    letter-spacing: 8px;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+  .orderNos {
+    h5 {
+      @include itemHeader;
+    }
+  }
+  .menus {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    h5 {
+      @include itemHeader;
+    }
+
+    .menuCategories {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  .cart-details {
+    .material-design-icon {
+      cursor: pointer;
+    }
+    ul {
+      padding: 0;
+    }
+    padding: 5px;
+    h4 {
+      padding-bottom: 10px;
+    }
+    span.qty {
+      float: right;
+    }
+    .total {
+      display: flex;
+      justify-content: center;
+    }
+    .price {
+      text-align: right;
+      font-family: Courier;
+    }
+    .priceHeader {
+      text-align: right;
+    }
+  }
+  ul.table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+    @media (min-width: 550px) {
+      width: 550px;
+    }
+    .qty-in-cart,
+    .add,
+    .minus {
+      display: inline-block;
+      margin-left: 20px;
+    }
+    .add,
+    .minus {
+      cursor: pointer;
+      &:hover {
+        color: rgb(24, 21, 21);
+      }
+    }
+    .add {
+      color: rgb(77, 77, 240);
+    }
+    .minus {
+      color: rgb(202, 52, 77);
+    }
+    li {
+      padding-left: 20px;
+      display: flex;
+      background-color: #ebebeb;
+      padding: 10px 0;
+      margin-bottom: 4px;
+      line-height: 1.5;
+      user-select: none;
+      justify-content: flex-start;
+      width: 100%;
+      @include alt;
+
+      .item {
+        width: 50%;
+        padding: 0 15px;
+      }
+      .price {
+        font-family: Courier;
+      }
+    }
+  }
+}
